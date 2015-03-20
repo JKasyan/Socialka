@@ -28,7 +28,7 @@ public class Main {
 		ApplicationContext context = new ClassPathXmlApplicationContext("socialka-app-ctx.xml");
 		UserDaoService userService = (UserDaoService)context.getBean("userDaoService");
 		
-		File file = new File("/home/jeka/Робочий стіл/Images/Tugai.JPG");
+		File file = new File("C://Users//Evgen//Desktop//london.jpg");
 		byte[] byteFile = new byte[(int) file.length()];
 		FileInputStream inputStream = new FileInputStream(file);
 		inputStream.read(byteFile);
@@ -36,17 +36,17 @@ public class Main {
 		logger.debug(byteFile.length);
 		Blob blob = new SerialBlob(byteFile);
 		Image image = new Image();
-		image.setTitle("for_slavik");
+		image.setTitle("Vetal");
 		image.setPhoto(blob);
 		userService.addImage(image);
 		
 		User user = new User();
-		user.setEmail("tugai@ukr.net");
+		user.setEmail("vetal_dvorkovui@ukr.net");
 		user.setPassword("12345");
-		user.setName("Jaroslav");
-		user.setLastName("Tugai");
+		user.setName("Vetal");
+		user.setLastName("Dvorkovui");
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(1987, 17, 7);
+		calendar.set(1986, 14, 6);
 		user.setDateOfBirth(calendar);
 		user.setPhoto(image);
 		image.getUsers().add(user);

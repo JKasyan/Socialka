@@ -1,9 +1,14 @@
 package com.kasyan.Socialka.DaoImpl;
 
+import java.util.List;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.kasyan.Socialka.Dao.UserDao;
 import com.kasyan.Socialka.Dto.Image;
@@ -43,12 +48,13 @@ public class UserDaoImpl implements UserDao {
 		*/
 		return true;
 	}
-
+	
 	@Override
 	public User getByEmail(String email) {
 		Session session = this.sessionFactory.openSession();
-		User user = (User) session.load(User.class, email);
-		return user;
+		Criteria cr = session.createCriteria(User.class);
+		cr.add(Restrictions.like("email", email));
+		return (User) cr.uniqueResult();
 	}
 
 	@Override
@@ -69,5 +75,15 @@ public class UserDaoImpl implements UserDao {
 		session.persist(object);
 		transaction.commit();
 		session.close();
+	}
+
+	@Override
+	public List<User> getFriends(String email) {
+		//String query = "SELECT * FROM friends WHERE email="+email;
+		Session session = this.sessionFactory.openSession();
+		Criteria cr = session.createCriteria(User.class);
+		cr.add(Restrictions.like("email", email));
+		List<User> list = cr.list();
+		return list;
 	}
 }

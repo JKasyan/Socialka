@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User implements Serializable{
 	
 	@Id
@@ -29,11 +29,11 @@ public class User implements Serializable{
 	@Column(name="id_user", unique=true, nullable=false)
 	private int id;
 	
-	@Pattern(regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}", message="Invalid email address.")
+	//@Pattern(regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}", message="Invalid email address.")
 	@Column(name="email", nullable=false)
 	private String email;
 	
-	@Size(min=6, message="Name must be at least 6 characters long.")
+	//@Size(min=6, message="Name must be at least 6 characters long.")
 	@Column(name="password", nullable=false)
 	private String password;
 	/*
@@ -42,11 +42,11 @@ public class User implements Serializable{
 	private Password password;
 	*/
 	
-	@Size(min=4, max=20, message="Name must be at between 3 and 20 characters long.")
+	//@Size(min=4, max=20, message="Name must be at between 3 and 20 characters long.")
 	@Column(name="name", nullable=false)
 	private String name;
 	
-	@Size(min=4, max=20, message="Last name must be at between 3 and 20 characters long.")
+	//@Size(min=4, max=20, message="Last name must be at between 3 and 20 characters long.")
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 	
@@ -108,9 +108,11 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	*/
+	
 	@Override
 	public String toString() {
 		return "[ "+email+", "+name+", "+lastName+", "+dateOfBirth.get(Calendar.YEAR)+"/"
 				+dateOfBirth.get(Calendar.MONTH)+"/"+dateOfBirth.get(Calendar.DATE)+" ]";
 	}
+	
 }

@@ -1,5 +1,7 @@
 package com.kasyan.Socialka.Services;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kasyan.Socialka.Dto.Image;
@@ -13,4 +15,5 @@ public interface UserDaoService {
 	public boolean isEmailUnique(String email);
 	public User getByEmail(String email);
 	public User getById(int id);
+	public List<User> getFriends(String email);
 }

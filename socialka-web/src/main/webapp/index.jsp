@@ -24,7 +24,7 @@
 	
 	<div class="hero-unit">
 	<h2>Welcome to the Socialka</h2>
-	<form action="sign_in" method="post">
+	<form action="sign_in.do" method="post">
 					<input type="email" name="email" class="form-control" placeholder="Email"/><br/> 
 				    <input type="password" name="password" class="form-control" placeholder="Password"/><br/> 
 					<a href="login.do" class="btn btn-primary">Log in</a>

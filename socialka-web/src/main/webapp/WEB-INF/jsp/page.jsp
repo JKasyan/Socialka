@@ -39,15 +39,24 @@ body {
 	<%
 	User user = (User)request.getAttribute("user");
 	int id = user.getId();
+	
+	String sessionId = null;
+	Cookie[] cookies = request.getCookies();
+	if(cookies!=null){
+		for(Cookie cookie:cookies){
+			if(cookie.getName().equals("JSESSIONID")) sessionId=cookie.getValue();
+		}
+	}
 	%>
 	<div class="hero-unit">
 		<p>
 			<b>${user.getName()} ${user.getLastName()}</b><br/>
-			<img src="/socialka/getImage/${user.getId()}" alt="avatar" width="200px"><br/>
-			<a href="socialka/page">My page</a><br/>
+			<img src="/socialka-web/getImage/${user.getId()}.do" alt="avatar" width="200px"><br/>
+			<a href="/socialka-web/friend/my_page.do">My page</a><br/>
 			<a href="socialka/friends">My friends</a><br/>
 			<a href="socialka/messages">My messages</a><br/>
 			<a href="socialka/properties">My properties</a><br/>
+			<%=sessionId %>
 		</p>
 	</div>
 </body>

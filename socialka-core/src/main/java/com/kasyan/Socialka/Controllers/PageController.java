@@ -5,6 +5,8 @@ import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -21,7 +23,7 @@ import com.kasyan.Socialka.Services.UserDaoService;
 
 @Controller
 @RequestMapping("/friend")
-public class MainController {
+public class PageController {
 	
 	private UserDaoService userDaoService;
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
@@ -37,5 +39,23 @@ public class MainController {
 		User user = (User)userDaoService.getById(id);
 		model.addAttribute(user);
 		return "page";
+	}
+	
+	@RequestMapping(value="/my_page", method=RequestMethod.GET)
+	public String myPage(HttpServletRequest req, Model model){
+		Cookie[] cookies = req.getCookies();
+		if(cookies!=null){
+			logger.debug("Cookies not null");
+			for(Cookie cookie:cookies){
+				if(cookie.getName().equals("email")){
+					String email = cookie.getValue();
+					logger.debug("Cookie value: "+email);
+					User user = (User)userDaoService.getByEmail(email);
+					model.addAttribute(user);
+					return "page";
+				}
+			}
+		}
+		return "redirect:/index.jsp";
 	}
 }

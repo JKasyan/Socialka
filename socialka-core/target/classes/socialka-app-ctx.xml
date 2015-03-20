@@ -8,5 +8,6 @@
 	<import resource="classpath:datasource-ctx.xml" />
 	<import resource="classpath:dao-ctx.xml" />
 	<import resource="classpath:services-ctx.xml" />
-			
+	<import resource="classpath:filters-ctx.xml" />
+	
 </beans>

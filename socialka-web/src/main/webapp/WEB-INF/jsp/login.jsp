@@ -53,11 +53,6 @@ body {
 	<!-- 
 	<form action="main.do" method="post">
 					<input type="email" name="email" class="form-control" placeholder="Email"/>
-					<%String error = (String)request.getAttribute("error"); %>
-					<%if(error!=null) { %>
-					<%=error %>
-					<%} %>
-					<br/>
 				    <input type="password" name="password" class="form-control" placeholder="Password"/><br/>
 				    <input type="password" name="password_repeat" class="form-control" placeholder="Repeat password"/><br/>
 				    <input type="text" name="name" class="form-control" placeholder="Name"/><br/>

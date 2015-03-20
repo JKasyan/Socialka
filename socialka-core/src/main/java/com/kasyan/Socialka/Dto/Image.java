@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="photos")
+@Table(name="images")
 public class Image implements Serializable{
 	
 	@Id
