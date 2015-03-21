@@ -1,16 +1,20 @@
 package com.kasyan.Socialka.DaoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.kasyan.Socialka.Dao.UserDao;
+import com.kasyan.Socialka.Dto.Friend;
 import com.kasyan.Socialka.Dto.Image;
 import com.kasyan.Socialka.Dto.User;
 
@@ -79,11 +83,30 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<User> getFriends(String email) {
-		//String query = "SELECT * FROM friends WHERE email="+email;
+		String queryId = "select F.friend from Friend F where email = :email";
 		Session session = this.sessionFactory.openSession();
-		Criteria cr = session.createCriteria(User.class);
-		cr.add(Restrictions.like("email", email));
-		List<User> list = cr.list();
+		Query query = session.createQuery(queryId);
+		query.setString("email", email);
+		List<Integer> listIdFriends = query.list();
+		List<User> friends = new ArrayList<User>(listIdFriends.size());
+		Query queryGetFriends = session.createQuery("from User U where U.id in (:listIdFriends)");
+		queryGetFriends.setParameterList("listIdFriends", listIdFriends);
+		friends = queryGetFriends.list();
+		return friends;
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		String querySQL = "from User";
+		logger.debug(querySQL);
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery(querySQL);
+		List<User> list = query.list();
 		return list;
+	}
+
+	@Override
+	public void addFriendship(Friend friend) {
+		saveObject(friend);
 	}
 }

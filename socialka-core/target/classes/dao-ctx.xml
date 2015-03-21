@@ -21,6 +21,7 @@
 			<list>
 				<value>com.kasyan.Socialka.Dto.User</value>
 				<value>com.kasyan.Socialka.Dto.Image</value>
+				<value>com.kasyan.Socialka.Dto.Friend</value>
 				<!-- 
 				<value>com.kasyan.Socialka.Dto.Password</value>
 				 -->

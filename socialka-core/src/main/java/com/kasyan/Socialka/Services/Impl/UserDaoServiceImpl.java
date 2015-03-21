@@ -3,6 +3,7 @@ package com.kasyan.Socialka.Services.Impl;
 import java.util.List;
 
 import com.kasyan.Socialka.Dao.UserDao;
+import com.kasyan.Socialka.Dto.Friend;
 import com.kasyan.Socialka.Dto.Image;
 import com.kasyan.Socialka.Dto.User;
 import com.kasyan.Socialka.Services.UserDaoService;
@@ -42,6 +43,16 @@ public class UserDaoServiceImpl implements UserDaoService {
 
 	@Override
 	public List<User> getFriends(String email) {
-		return null;
+		return userDao.getFriends(email);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return userDao.getAllUsers();
+	}
+
+	@Override
+	public void addFriendship(Friend friend) {
+		userDao.addFriendship(friend);
 	}
 }

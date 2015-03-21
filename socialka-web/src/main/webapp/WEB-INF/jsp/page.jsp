@@ -53,9 +53,10 @@ body {
 			<b>${user.getName()} ${user.getLastName()}</b><br/>
 			<img src="/socialka-web/getImage/${user.getId()}.do" alt="avatar" width="200px"><br/>
 			<a href="/socialka-web/friend/my_page.do">My page</a><br/>
-			<a href="socialka/friends">My friends</a><br/>
+			<a href="/socialka-web/my_friends.do">My friends</a><br/>
 			<a href="socialka/messages">My messages</a><br/>
 			<a href="socialka/properties">My properties</a><br/>
+			<a href="/socialka-web/log_out.do">Log out</a>
 			<%=sessionId %>
 		</p>
 	</div>

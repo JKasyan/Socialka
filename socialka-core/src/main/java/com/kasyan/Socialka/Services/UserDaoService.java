@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kasyan.Socialka.Dto.Friend;
 import com.kasyan.Socialka.Dto.Image;
 import com.kasyan.Socialka.Dto.User;
 
@@ -16,4 +17,6 @@ public interface UserDaoService {
 	public User getByEmail(String email);
 	public User getById(int id);
 	public List<User> getFriends(String email);
+	public List<User> getAllUsers();
+	public void addFriendship(Friend friend);
 }

@@ -34,7 +34,7 @@ public class SingInController {
 			if(user!=null){
 				if(userValid.getPassword().equals(password)){
 					Cookie cookie = new Cookie("email", email);
-					cookie.setMaxAge(60);
+					cookie.setMaxAge(60*60);
 					res.addCookie(cookie);
 					model.addAttribute(userValid);
 					logger.debug("Succes loging");

@@ -11,14 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name="users")
@@ -111,8 +106,7 @@ public class User implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "[ "+email+", "+name+", "+lastName+", "+dateOfBirth.get(Calendar.YEAR)+"/"
-				+dateOfBirth.get(Calendar.MONTH)+"/"+dateOfBirth.get(Calendar.DATE)+" ]";
+		return "[ "+email+", "+name+", "+lastName+","+" ]";
 	}
 	
 }

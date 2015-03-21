@@ -39,7 +39,7 @@ public class FriendsController {
 				}
 			}
 		}
-		return "index.jsp";
+		return "redirect:/index.jsp";
 	}
 
 }
