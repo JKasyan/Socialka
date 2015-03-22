@@ -6,6 +6,7 @@ import com.kasyan.Socialka.Dao.UserDao;
 import com.kasyan.Socialka.Dto.Friend;
 import com.kasyan.Socialka.Dto.Image;
 import com.kasyan.Socialka.Dto.User;
+import com.kasyan.Socialka.Exceptions.UserNotFoundException;
 import com.kasyan.Socialka.Services.UserDaoService;
 
 public class UserDaoServiceImpl implements UserDaoService {
@@ -22,8 +23,8 @@ public class UserDaoServiceImpl implements UserDaoService {
 	}
 
 	@Override
-	public boolean isEmailUnique(String email) {
-		return userDao.isEmailUnique(email);
+	public boolean isUserExist(int id) {
+		return userDao.isUserExist(id);
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class UserDaoServiceImpl implements UserDaoService {
 	}
 
 	@Override
-	public User getById(int id) {
+	public User getById(int id) throws UserNotFoundException{
 		return userDao.getById(id);
 	}
 

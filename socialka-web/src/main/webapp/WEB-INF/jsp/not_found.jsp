@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="com.kasyan.Socialka.Dto.User"%>
-<%@page import="java.util.List"%>
 <!DOCTYPE html>
-
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>My friends</title>
-<link href="resources/css/socialka.css" rel="stylesheet">
+<title>${user.getName()} ${user.getLastName()}</title>
+<c:url var="cssUrl" value="/resources/css/socialka.css" />
+<link href="${cssUrl}" rel="stylesheet" type="text/css" >
+
 </head>
 
 <body>
@@ -47,26 +47,10 @@
 		</table>
 	</div>
 
-
-	<%
-List<User> friends = (List<User>)request.getAttribute("friends");
- if(friends!=null){
-	for(User friend:friends){
-		String name = friend.getName();
-		String lastName = friend.getLastName();
-	%>
-	<div class="friend-bar">
-		<div class="photo">
-			<img alt="avatar" src="resources/images/default-avatar.png" width="100px"
-				height="100px" border="1px">
-		</div>
-		<div class="info">
-			<h3><%=name+" "+lastName %></h3>
-		</div>
+	<div class="right-bar">
+		<a href="/socialka-web/friend/my_page.do"><img alt="not_found" src="<c:url value="/resources/images/404.png"/>" 
+		width="400px" height="467px"
+		></a>
 	</div>
-	<%
-	}
- }
- %>
 </body>
 </html>

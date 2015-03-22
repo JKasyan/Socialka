@@ -1,8 +1,6 @@
 package com.kasyan.Socialka.Controllers;
 
-import java.io.IOException;
 import java.sql.Blob;
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,7 +26,7 @@ public class ImageController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public void showImage(@PathVariable int id, HttpServletResponse response) throws SQLException, IOException{
+	public void showImage(@PathVariable int id, HttpServletResponse response) throws Exception{
 		logger.debug("Id: "+id);
 		response.setContentType("image/jpeg");
 		User user = userDaoService.getById(id);

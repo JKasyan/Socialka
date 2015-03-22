@@ -1,64 +1,50 @@
-<%@page import="java.io.OutputStream"%>
-<%@page import="com.kasyan.Socialka.Dto.Image"%>
-<%@page import="java.sql.Blob"%>
-<%@page import="org.hibernate.type.YesNoType"%>
-<%@page import="com.kasyan.Socialka.Dto.User"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${user.getName()}${user.getLastName()}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="resources/bootstrap.css" rel="stylesheet">
-
-<style>
-.block {
-	padding-left: 100px;
-	width: 200px;
-	background: #ccc;
-	float: left;
-}
-
-body {
-	padding-top: 100px;
-}
-</style>
-<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="assets/ico/apple-touch-icon-144-precomposed.png">
+<title>${user.getName()} ${user.getLastName()}</title>
+<c:url var="cssUrl" value="/resources/css/socialka.css" />
+<link href="${cssUrl}" rel="stylesheet" type="text/css" >
 </head>
+
 <body>
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div class="navbar-inner">
-			<div class="container"></div>
+
+	<div class="left-bar"></div>
+
+	<div class="top-bar">
+		<div class="label"><a href="/socialka-web/friend/my_page.do"><h1>Socialka</h1></a></div>
+
+		<div class="right">
+			<a class="button black" href="/socialka-web/log_out.do">Log out</a>
 		</div>
 	</div>
 
-	<%
-	User user = (User)request.getAttribute("user");
-	int id = user.getId();
-	
-	String sessionId = null;
-	Cookie[] cookies = request.getCookies();
-	if(cookies!=null){
-		for(Cookie cookie:cookies){
-			if(cookie.getName().equals("JSESSIONID")) sessionId=cookie.getValue();
-		}
-	}
-	%>
-	<div class="hero-unit">
-		<p>
-			<b>${user.getName()} ${user.getLastName()}</b><br/>
-			<img src="/socialka-web/getImage/${user.getId()}.do" alt="avatar" width="200px"><br/>
-			<a href="/socialka-web/friend/my_page.do">My page</a><br/>
-			<a href="/socialka-web/my_friends.do">My friends</a><br/>
-			<a href="socialka/messages">My messages</a><br/>
-			<a href="socialka/properties">My properties</a><br/>
-			<a href="/socialka-web/log_out.do">Log out</a>
-			<%=sessionId %>
-		</p>
+	<div class="main-bar">
+		<table>
+			<tr>
+				<td><a href="/socialka-web/friend/my_page.do">My page</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/socialka-web/my_friends.do">My friends</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/socialka-web/messages.do">My messages</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/socialka/properties.do">My properties</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/socialka-web/my_groups.do">My groups</a></td>
+			</tr>
+		</table>
 	</div>
+
 </body>
 </html>

@@ -17,6 +17,7 @@ import com.kasyan.Socialka.Dao.UserDao;
 import com.kasyan.Socialka.Dto.Friend;
 import com.kasyan.Socialka.Dto.Image;
 import com.kasyan.Socialka.Dto.User;
+import com.kasyan.Socialka.Exceptions.UserNotFoundException;
 
 public class UserDaoImpl implements UserDao {
 	
@@ -33,24 +34,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean isEmailUnique(String email) {
-		/*
-		DetachedCriteria dc = DetachedCriteria.forEntityName(ENTITY_USER);
-		String firstChar = email.substring(0, 1);
-		logger.debug(firstChar);
-		dc.add(Restrictions.or(Restrictions.like("email", firstChar, MatchMode.START)));
-		List<User> users = (List<User>)getHibernateTemplate().findByCriteria(dc);
-		logger.debug("Emails for comparing"+users);
-		if(users!=null){
-			for(User u:users){
-				if(u.getEmail().equals(email)){
-					logger.debug("This email exist in DB: "+u.getEmail());
-					return false;
-				}
-			}
-		}
-		*/
-		return true;
+	public boolean isUserExist(int id) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("select 1 from User U where U.id = :id");
+		query.setInteger("id", id);
+		return (query.uniqueResult()!=null);
 	}
 	
 	@Override
@@ -67,7 +55,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User getById(int id) {
+	public User getById(int id) throws UserNotFoundException{
+		if(!isUserExist(id)) throw new UserNotFoundException(id);
 		Session session = this.sessionFactory.openSession();
 		User user = (User) session.load(User.class, id);
 		return user;
@@ -98,7 +87,6 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> getAllUsers() {
 		String querySQL = "from User";
-		logger.debug(querySQL);
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery(querySQL);
 		List<User> list = query.list();

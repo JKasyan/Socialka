@@ -1,34 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Socialka</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="resources/bootstrap.css" rel="stylesheet">
-
-<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="assets/ico/apple-touch-icon-144-precomposed.png">
+<link href="resources/css/socialka.css" rel="stylesheet">
 </head>
-<body>
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div class="navbar-inner">
-			<div class="container">
 
-			</div>
-		</div>
+	<div class="left-bar"></div>
+	
+	<div class="top-bar">
+		<div class="label"><a href="/socialka-web/friend/my_page.do"><h1>Socialka</h1></a></div>
+
 	</div>
 	
+		<div class="main-bar">
+		<table>
+			<tr>
+				<td><a href="/socialka-web/friend/my_page.do">My page</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/socialka-web/my_friends.do">My friends</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/socialka-web/messages.do">My messages</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/socialka/properties.do">My properties</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/socialka-web/my_groups.do">My groups</a></td>
+			</tr>
+		</table>
+	</div>
 	
-	<div class="hero-unit">
+	<div class="right-bar">
 	<h2>Welcome to the Socialka</h2>
 	<form action="sign_in.do" method="post">
 					<input type="email" name="email" class="form-control" placeholder="Email"/><br/> 
-				    <input type="password" name="password" class="form-control" placeholder="Password"/><br/> 
-					<a href="login.do" class="btn btn-primary">Log in</a>
-					<input type="submit" class="btn btn-primary" value="Sign in"/>
+				    <input id="password" type="password" name="password" class="form-control" placeholder="Password"/><br/> 
+					<a href="login.do" class="button black">Log in</a>
+					<input type="submit" class="button black" value="Sign in"/>
 	</form>
 	</div>
 	

@@ -23,7 +23,7 @@ public class LoginController {
 		this.userDaoService = userDaoService;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, params="new")
+	@RequestMapping(method=RequestMethod.GET)
 	public String createProfile(Model model){
 		model.addAttribute(new User());
 		return "/login";
