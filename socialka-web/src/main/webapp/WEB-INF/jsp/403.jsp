@@ -9,13 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="resources/css/socialka.css" rel="stylesheet">
 </head>
-
 <body onload='document.loginForm.username.focus();'>
- 
 	<div class="left-bar"></div>
 	
 	<div class="top-bar">
-		<div class="label"><a href="/socialka-web/friend/my_page"><h1>Socialka</h1></a></div>
+		<div class="label"><a href="/socialka-web/friend/my_page.do"><h1>Socialka</h1></a></div>
 
 	</div>
 	
@@ -51,18 +49,14 @@
 			${msg}
 	</c:if>
 
-	<div class="right-bar">
-	<h2>Welcome to the Socialka</h2>
-	<form action="<c:url value='/j_spring_security_check' />" method="post" name="signInForm">
-					<input type="email" name="email" class="form-control" placeholder="Email"/><br/>
-				    <input id="password" type="password" name="password" class="form-control" placeholder="Password"/><br/>
-				    <!-- 
-				    <input type="checkbox" name="remember-me" >
-				     -->
-		 			<input type="submit" class="button black" value="Sign in"/>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
-	</div>
+	<c:choose>
+		<c:when test="${empty email}">
+			<h2>You do not have permission to access this page!</h2>
+		</c:when>
+		<c:otherwise>
+			<h2>Username : ${email} <br/>You do not have permission to access this page!</h2>
+		</c:otherwise>
+	</c:choose>
 	
 </body>
 </html>

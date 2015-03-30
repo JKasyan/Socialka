@@ -5,29 +5,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-
-	<bean name="logOutController" class="com.kasyan.Socialka.Controllers.LogOutController" />
-
-	<bean name="friendsController" class="com.kasyan.Socialka.Controllers.FriendsController">
-		<property name="userDaoService" ref="userDaoService" />
-	</bean>
 	
-	<bean name="signInController" class="com.kasyan.Socialka.Controllers.SingInController">
-		<property name="userDaoService" ref="userDaoService" />
-	</bean>
-
-	<bean name="loginController" class="com.kasyan.Socialka.Controllers.LoginController">
-		<property name="userDaoService" ref="userDaoService" />
-	</bean>
-
-	<bean name="pageController" class="com.kasyan.Socialka.Controllers.PageController">
-		<property name="userDaoService" ref="userDaoService" />
-	</bean>
-
-	<bean name="imageController" class="com.kasyan.Socialka.Controllers.ImageController">
-		<property name="userDaoService" ref="userDaoService" />
-	</bean>
-
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.kasyan.Socialka.Controllers"/>
+	 
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -35,14 +16,5 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	<!--
-	<mvc:annotation-driven />
-	<mvc:resources location="/resources/**" mapping="/resources/"/>
-	-->
-	 <!-- 
-	 <bean id="multiPartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
-		<property name="maxUploadSize" value="100000"></property> </bean> 
-		-->
 
 </beans>

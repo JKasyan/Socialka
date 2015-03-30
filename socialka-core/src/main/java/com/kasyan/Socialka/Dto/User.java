@@ -2,6 +2,7 @@ package com.kasyan.Socialka.Dto;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="users")
@@ -52,6 +56,13 @@ public class User implements Serializable{
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_photo", nullable=false)
 	private Image photo;
+	
+	@OneToMany(targetEntity=UserRole.class, fetch=FetchType.LAZY, mappedBy="user")
+	private Set<UserRole> userRole;
+	
+	@Column(name="enabled", nullable=false, columnDefinition="TINYINT(1)")
+	@Type(type="org.hibernate.type.NumericBooleanType")
+	private boolean enabled;
 
 	public int getId() {
 		return id;
@@ -103,10 +114,21 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	*/
+	public Set<UserRole> getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(Set<UserRole> userRole) {
+		this.userRole = userRole;
+	}
 	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 	@Override
 	public String toString() {
 		return "[ "+email+", "+name+", "+lastName+","+" ]";
 	}
-	
 }

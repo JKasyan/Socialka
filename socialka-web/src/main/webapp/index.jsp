@@ -42,13 +42,11 @@
 	</div>
 	
 	<div class="right-bar">
-	<h2>Welcome to the Socialka</h2>
-	<form action="sign_in.do" method="post">
-					<input type="email" name="email" class="form-control" placeholder="Email"/><br/> 
-				    <input id="password" type="password" name="password" class="form-control" placeholder="Password"/><br/> 
-					<a href="login.do" class="button black">Log in</a>
-					<input type="submit" class="button black" value="Sign in"/>
-	</form>
+		<h2>Welcome to the Socialka</h2>
+
+		<a href="login.do" class="button black">Log in</a>
+		<a href="sign_in.do" class="button black">Sign in</a>
+		
 	</div>
 	
 </body>

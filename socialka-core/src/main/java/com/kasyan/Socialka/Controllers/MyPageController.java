@@ -1,7 +1,5 @@
 package com.kasyan.Socialka.Controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -9,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kasyan.Socialka.Dto.User;
 import com.kasyan.Socialka.Services.UserDaoService;
 
 @Controller
-public class FriendsController {
+public class MyPageController {
 	
 	@Autowired
 	private UserDaoService userDaoService;
@@ -27,17 +25,19 @@ public class FriendsController {
 		this.userDaoService = userDaoService;
 	}
 	
-	@RequestMapping(value="/my_friends", method=RequestMethod.GET)
-	public String getMyFriends(HttpServletRequest req, Model model){
+	@RequestMapping(value="/my_page", method=RequestMethod.GET)
+	public ModelAndView myPage(HttpServletRequest req){
+		ModelAndView mv = new ModelAndView();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String email = authentication.getName();
-		logger.debug("Email: "+email);
-		if(email!="anonymousUser" && email!=null){
-			List<User> friends = userDaoService.getFriends(email);
-			model.addAttribute("friends", friends);
-			return "my_friends";
+		if(email!="anonymousUser"){
+			logger.debug("Email : "+email);
+			User user = (User)userDaoService.getByEmail(email);
+			mv.addObject("user", user);
+			mv.setViewName("page");
+			return mv;
 		}
-		return "redirect:/index.jsp";
+		mv.setViewName("redirect:/index.jsp");
+		return mv;
 	}
-
 }

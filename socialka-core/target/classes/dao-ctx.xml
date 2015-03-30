@@ -22,6 +22,7 @@
 				<value>com.kasyan.Socialka.Dto.User</value>
 				<value>com.kasyan.Socialka.Dto.Image</value>
 				<value>com.kasyan.Socialka.Dto.Friend</value>
+				<value>com.kasyan.Socialka.Dto.UserRole</value>
 				<!-- 
 				<value>com.kasyan.Socialka.Dto.Password</value>
 				 -->
@@ -40,10 +41,5 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
-	<!--  
-	<bean name="signInDao" class="com.kasyan.Socialka.DaoImpl.SignInDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	-->
 	
 </beans>

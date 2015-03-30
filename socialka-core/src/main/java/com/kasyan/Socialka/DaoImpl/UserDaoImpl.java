@@ -28,12 +28,12 @@ public class UserDaoImpl implements UserDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
+	
 	public void addUser(User user) {
 		saveObject(user);
 	}
 
-	@Override
+	
 	public boolean isUserExist(int id) {
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery("select 1 from User U where U.id = :id");
@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 		return (query.uniqueResult()!=null);
 	}
 	
-	@Override
+	
 	public User getByEmail(String email) {
 		Session session = this.sessionFactory.openSession();
 		Criteria cr = session.createCriteria(User.class);
@@ -49,12 +49,12 @@ public class UserDaoImpl implements UserDao {
 		return (User) cr.uniqueResult();
 	}
 
-	@Override
+	
 	public void addImage(Image image) {
 		saveObject(image);
 	}
 
-	@Override
+	
 	public User getById(int id) throws UserNotFoundException{
 		if(!isUserExist(id)) throw new UserNotFoundException(id);
 		Session session = this.sessionFactory.openSession();
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 		session.close();
 	}
 
-	@Override
+	
 	public List<User> getFriends(String email) {
 		String queryId = "select F.friend from Friend F where email = :email";
 		Session session = this.sessionFactory.openSession();
@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
 		return friends;
 	}
 
-	@Override
+	
 	public List<User> getAllUsers() {
 		String querySQL = "from User";
 		Session session = this.sessionFactory.openSession();
@@ -93,7 +93,7 @@ public class UserDaoImpl implements UserDao {
 		return list;
 	}
 
-	@Override
+	
 	public void addFriendship(Friend friend) {
 		saveObject(friend);
 	}

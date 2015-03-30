@@ -13,20 +13,35 @@
 
 <body>
 
+	<c:url value="/j_spring_security_logout" var="logoutUrl" />
+	
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
+
+	<script>
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+	</script>
+	
 	<div class="left-bar"></div>
 
 	<div class="top-bar">
-		<div class="label"><a href="/socialka-web/friend/my_page.do"><h1>Socialka</h1></a></div>
+		<div class="label">
+			<a href="/socialka-web/my_page.do"><h1>Socialka</h1></a>
+		</div>
 
 		<div class="right">
-			<a class="button black" href="/socialka-web/log_out.do">Log out</a>
+			<a class="button black" href="javascript:formSubmit()"> Log out</a>
 		</div>
 	</div>
 
 	<div class="main-bar">
 		<table>
 			<tr>
-				<td><a href="/socialka-web/friend/my_page.do">My page</a><br />
+				<td><a href="/socialka-web/my_page.do">My page</a><br />
 				</td>
 			</tr>
 			<tr>

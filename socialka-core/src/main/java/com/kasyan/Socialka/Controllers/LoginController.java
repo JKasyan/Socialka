@@ -1,43 +1,43 @@
 package com.kasyan.Socialka.Controllers;
 
-import javax.validation.Valid;
-
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.kasyan.Socialka.Dto.User;
-import com.kasyan.Socialka.Services.UserDaoService;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/login")
 public class LoginController {
-
-	private UserDaoService userDaoService;
-	private final Logger logger = Logger.getLogger(this.getClass().getName());
-
-	public void setUserDaoService(UserDaoService userDaoService) {
-		this.userDaoService = userDaoService;
-	}
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public String createProfile(Model model){
-		model.addAttribute(new User());
-		return "/login";
+	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
+	public ModelAndView adminPage() {
+ 
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Spring Security Custom Login Form");
+		model.addObject("message", "This is protected page!");
+		model.setViewName("admin");
+ 
+		return model;
+ 
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public String addUser(@Valid User user, BindingResult bindingResult){
-		if(bindingResult.hasErrors()){
-			logger.debug("Redirect to /login");
-			return "login";
+ 
+	//Spring Security see this :
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login(
+		@RequestParam(value = "error", required = false) String error,
+		@RequestParam(value = "logout", required = false) String logout) {
+ 
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Invalid username and password!");
 		}
-		logger.debug(user.toString());
-		userDaoService.addUser(user);
-		int id = userDaoService.getByEmail(user.getEmail()).getId();
-		return "redirect:/page/"+id;
+ 
+		if (logout != null) {
+			model.addObject("msg", "You've been logged out successfully.");
+		}
+		model.setViewName("login");
+ 
+		return model;
+ 
 	}
 }
