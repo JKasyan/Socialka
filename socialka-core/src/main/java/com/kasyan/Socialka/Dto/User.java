@@ -1,7 +1,9 @@
 package com.kasyan.Socialka.Dto;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,15 +12,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="users")
 public class User implements Serializable{
@@ -28,34 +27,26 @@ public class User implements Serializable{
 	@Column(name="id_user", unique=true, nullable=false)
 	private int id;
 	
-	//@Pattern(regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}", message="Invalid email address.")
 	@Column(name="email", nullable=false)
 	private String email;
 	
-	//@Size(min=6, message="Name must be at least 6 characters long.")
 	@Column(name="password", nullable=false)
 	private String password;
-	/*
-	@OneToOne(mappedBy="password")
-	@Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Password password;
-	*/
 	
-	//@Size(min=4, max=20, message="Name must be at between 3 and 20 characters long.")
 	@Column(name="name", nullable=false)
 	private String name;
 	
-	//@Size(min=4, max=20, message="Last name must be at between 3 and 20 characters long.")
+	@Column(name="gender")
+	private String gender;
+	
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name="birth_day")
-	private Calendar dateOfBirth;
+	@OneToMany(targetEntity=SmallImage.class, fetch=FetchType.LAZY, mappedBy="user")
+	private List<SmallImage> smallImages = new ArrayList<SmallImage>();
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_photo", nullable=false)
-	private Image photo;
+	@OneToMany(targetEntity=Image.class, fetch=FetchType.LAZY, mappedBy="user")
+	private Set<Image> images = new HashSet<Image>(0);
 	
 	@OneToMany(targetEntity=UserRole.class, fetch=FetchType.LAZY, mappedBy="user")
 	private Set<UserRole> userRole;
@@ -94,41 +85,40 @@ public class User implements Serializable{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Calendar getDateOfBirth() {
-		return dateOfBirth;
-	}
-	public void setDateOfBirth(Calendar dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-	public Image getPhoto() {
-		return photo;
-	}
-	public void setPhoto(Image photo) {
-		this.photo = photo;
-	}
-	/*
-	public Password getPassword() {
-		return password;
-	}
-	public void setPassword(Password password) {
-		this.password = password;
-	}
-	*/
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
-	
 	public boolean isEnabled() {
 		return enabled;
 	}
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public Set<Image> getImages() {
+		return images;
+	}
+	public void setImages(Set<Image> images) {
+		this.images = images;
+	}
+	
+	public List<SmallImage> getSmallImages() {
+		return smallImages;
+	}
+	public void setSmallImages(List<SmallImage> smallImages) {
+		this.smallImages = smallImages;
+	}
 	@Override
 	public String toString() {
-		return "[ "+email+", "+name+", "+lastName+","+" ]";
+		return "[ Id "+id+", email: "+email+", name: "+name+", last Name: "+lastName+", gender "+gender+" ]";
 	}
 }

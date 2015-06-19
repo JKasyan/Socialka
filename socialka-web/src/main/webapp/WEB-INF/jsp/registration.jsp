@@ -1,70 +1,50 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-
-</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registration</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="resources/bootstrap.css" rel="stylesheet">
-
-<style>
-.date {
-	float: none;
-	height: 30px;
-	width: 90px;
-	background: url(date.png) no-repeat;
-	margin-right: 10px;
-	padding-top: 0px;
-	line-height: normal;
-}
-
-.file_upload {
-	position: relative;
-	overflow: hidden;
-	margin-bottom: 10px;
-}
-</style>
-<c:url var="cssUrl" value="/resources/css/socialka.css" />
+<c:url var="cssUrl" value="/resources/css/new_style.css" />
 <link href="${cssUrl}" rel="stylesheet" type="text/css">
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<script type="text/javascript" src="${contextPath}/resources/js/jquery-1.11.3.js"></script>
+<c:url var="faviconUrl" value="/resources/images/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="${faviconUrl}">
+<title>Registration</title>
 </head>
-
 <body>
-
-	<div class="left-bar"></div>
-
-	<div class="top-bar">
-		<div class="label">
-			<a href="/socialka-web/friend/my_page.do"><h1>Socialka</h1></a>
+	<div id="head-bar">
+		<div id="head_table">
+			<div id="head_table_row">
+				<div id="logo">
+					<img alt="group"
+						src="<c:url value="/resources/images/socialka_logo.gif"/>">
+				</div>
+			</div>
 		</div>
-
-		<div class="right">
-			<a class="button black" href="/socialka-web/log_out.do">Log out</a>
+		<div id="registration_link">
+			<a href="${contextPath}/login.html">Log in</a>
+			<a href="${contextPath}/registration.html?new">Registration</a>
 		</div>
 	</div>
-
-	<div class="main-bar"></div>
-
-	<div class="right-bar">
+	<div id="tape">
+	<div id="registration_form">
 		<form method="post">
-			<input type="email" name="email" class="form-control"
-				placeholder="Email" /><br/>
-				<input type="password" name="password"
-				class="form-control" placeholder="Password" /><br/> 
-				<input type="password" name="password_repeat" class="form-control"
-				placeholder="Repeat password" /><br/>
-				<input type="text"
-				name="name" class="form-control" placeholder="Name" /><br/> 
-				<input type="text" name="last_name" class="form-control"
-				placeholder="Last name" /><br/> 
-				<input type="date" name="date" class="date" /><br /> <input type="submit" class="btn btn-primary" />
+			<input type="email" name="email" class="input_text" placeholder="Email" /> 
+			<input type="password" name="password" id="password" class="input_text" placeholder="Password" required="required" />
+			<input type="text" name="name" class="input_text" placeholder="Name" /> 
+			<input type="text" name="lastName" class="input_text" placeholder="Last name" /> 
+			<select class="input_text" name="gender">
+				<option disabled>Select gender</option>
+				<option selected value="M">Men</option>
+				<option value="W">Women</option>
+			</select>
+			<input type="date" name="date" class="input_text" /> 
+			<input type="submit" class="input_submit" value="Send"/>
 		</form>
-
 	</div>
+	</div>
+	<div id="foot-bar"></div>
 </body>
 </html>

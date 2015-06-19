@@ -29,23 +29,18 @@ public class UserRole {
 	public User getProfile() {
 		return user;
 	}
-
 	public void setProfile(User user) {
 		this.user = user;
 	}
-
 	public String getRole() {
 		return role;
 	}
-
 	public void setRole(String role) {
 		this.role = role;
 	}
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}

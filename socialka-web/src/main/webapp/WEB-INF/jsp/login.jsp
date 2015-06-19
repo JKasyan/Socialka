@@ -3,66 +3,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Socialka</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="resources/css/socialka.css" rel="stylesheet">
+<c:url var="cssUrl" value="/resources/css/new_style.css" />
+<link href="${cssUrl}" rel="stylesheet" type="text/css">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<script type="text/javascript" src="${contextPath}/resources/js/jquery-1.11.3.js"></script>
+<c:url var="faviconUrl" value="/resources/images/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="${faviconUrl}">
+<title>Login</title>
 </head>
-
-<body onload='document.loginForm.username.focus();'>
- 
-	<div class="left-bar"></div>
-	
-	<div class="top-bar">
-		<div class="label"><a href="/socialka-web/friend/my_page"><h1>Socialka</h1></a></div>
-
+<body>
+	<div id="head-bar">
+		<div id="head_table">
+			<div id="head_table_row">
+				<div id="logo">
+					<a href="${contextPath}/my_page.html"><img alt="group"
+						src="<c:url value="/resources/images/socialka_logo.gif"/>">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="registration_link">
+			<a href="${contextPath}/registration.html?new">Registration</a>
+		</div>
 	</div>
-	
-		<div class="main-bar">
-		<table>
-			<tr>
-				<td><a href="/socialka-web/friend/my_page.do">My page</a><br />
-				</td>
-			</tr>
-			<tr>
-				<td><a href="/socialka-web/my_friends.do">My friends</a><br />
-				</td>
-			</tr>
-			<tr>
-				<td><a href="/socialka-web/messages.do">My messages</a><br />
-				</td>
-			</tr>
-			<tr>
-				<td><a href="/socialka/properties.do">My properties</a><br />
-				</td>
-			</tr>
-			<tr>
-				<td><a href="/socialka-web/my_groups.do">My groups</a></td>
-			</tr>
-		</table>
-	</div>
-
-	<c:if test="${not empty error}">
-			${error}
-	</c:if>
-
-	<c:if test="${not empty msg}">
-			${msg}
-	</c:if>
-
-	<div class="right-bar">
-	<h2>Welcome to the Socialka</h2>
-	<form action="<c:url value='/j_spring_security_check' />" method="post" name="signInForm">
-					<input type="email" name="email" class="form-control" placeholder="Email"/><br/>
-				    <input id="password" type="password" name="password" class="form-control" placeholder="Password"/><br/>
-				    <!-- 
-				    <input type="checkbox" name="remember-me" >
-				     -->
-		 			<input type="submit" class="button black" value="Sign in"/>
+	<div id="tape">
+		<div id="form_and_errors">
+			<div id="login_form">
+				<form id="" action="<c:url value='/j_spring_security_check' />"method="post" name="signInForm">
+					<input class="input_text" style="margin-top: 10px" type="email" name="email" placeholder="Email" /> 
+					<input class="input_text" type="password" name="password"placeholder="Password" /> 
+					<input class="input_submit" type="submit" value="Log in" /> 
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
+				</form>
+			</div>
+			<div id="errors">
+				<c:if test="${not empty error}"><h3>${error}</h3></c:if>
+				<c:if test="${not empty msg}"><h3>${msg}</h3></c:if>
+			</div>
+		</div>
 	</div>
-	
+	<div id="foot-bar"></div>
 </body>
 </html>

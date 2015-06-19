@@ -1,0 +1,338 @@
+body {
+	margin:	 				0px;
+	font-family:			Arial, sans-serif;
+	font-size: 				small;
+}
+
+/*
+* The head of page
+*/
+
+#head-bar {
+	width: 					1350px;
+	height: 				50px;
+	background-color: 		#8ea956;
+}
+
+#head_table{	
+	display: 				table;
+	margin-left: 			75px;
+	float: 					left;
+}
+
+#head_table_row{
+	display: 				table-row;
+}
+
+#logo{
+	display:				table-cell;
+	width:					300px;
+	height: 				50px;
+	padding-bottom: 		0px;
+}
+
+#search{
+	display: 				table-cell;
+	width:					350px;
+}
+
+#head-bar input{
+	width: 					150px;
+	height:					20px;
+	margin:					15px 0px 15px 0px;*/
+}
+
+#head-bar a:LINK{		
+	display: 				table-cell;
+	text-decoration: 		none;
+	padding:				17px;
+}
+
+#head-bar a:HOVER{
+	background: 			#779458;
+}
+
+#tape {
+	border-left-style:		solid;
+	border-right-style: 	solid;
+	border-color: 			gray;
+	border-width: 			thin;
+	width: 					600px;
+	height: 				800px;
+	margin-left: 			auto;
+	margin-right: 			auto;
+}
+
+#main {
+	border-bottom: 			thin dotted gray;
+}
+
+/*
+* The main links
+*/
+
+#table {
+	width: 					120px;
+	height:					199px;					
+	line-height: 			2.5em;
+	border-right: 			thin dotted gray;		
+}
+
+#table a:LINK{
+	font-size:				110%;
+	text-decoration:		none;
+	/*margin-left: 			10px;*/
+	padding: 				0px 10px 0px 10px;
+}
+
+#table a:HOVER{
+	background-color: 		#8ea956;
+}
+
+#friends_row{
+	vertical-align: 		middle;
+}
+
+.notification{
+	height: 				33px;
+	width: 					33px;
+	float: 					right;
+	text-align:				center;
+}
+
+/*
+* The head of group: description, image and button
+*/
+
+#main_right{
+	float: 					right;
+	width: 					479px;
+}
+
+#group_right {
+	text-align: 			center;
+	width: 					170px;
+	height:					199px;
+	float: 					right;
+	border-left: 			thin dotted gray;
+}
+
+#group_right img {
+	width: 					138px;
+	border-left: 			thin dotted gray;
+	border-right: 			thin dotted gray;
+	border-bottom: 			thin dotted gray;
+}
+
+.socialka_buttons {
+	width: 					140px;
+	height: 				30px;
+	background: 			#8ea956;
+	margin: 				10px 0px 10px 0px;
+}
+
+#group_left{
+	width: 					308px;
+	height:					199px;
+	float: 					left;
+}
+
+#description{
+	width: 					268px;
+	margin-left: 			15px;
+	border-bottom: 			thin dotted gray;
+	border-right: 			thin dotted gray;
+	border-left: 			thin dotted gray;
+	padding:				5px;
+}
+
+#title{
+	width: 					100%;
+	height:					25px;
+	background-color: 		#eded89;
+}
+
+#title h4{
+	vertical-align:			middle;
+	padding: 				5px;
+	margin-top: 			0px;
+	margin-bottom: 			0px
+}
+
+#location{
+	margin-left: 			15px;
+}
+
+#members_of_group{
+	border: 				thin dotted gray;
+	width: 					560px;
+	height: 				100px;
+	margin: 				20px 0px 0px 20px;
+}
+
+#foot-bar {
+	width: 					1350px;
+	height: 				50px;
+	background-color: 		#8ea956;
+}
+
+/*
+*Property for page
+*/
+
+#avatar_and_edit{
+	width: 					250px;
+	height:					200px;
+	border-right: 			thin dotted gray;
+	float: 					left;
+}
+
+#avatar{
+	width: 					250px;
+	height:					151px;
+	text-align: 			center;
+}
+
+#avatar img {
+	width: 					200px;
+	border-left: 			thin dotted gray;
+	border-right: 			thin dotted gray;
+	border-bottom: 			thin dotted gray;
+}
+
+#under_avatar{
+	width: 					250px;
+	height: 				49px;
+	vertical-align:			middle;
+	text-align: 			center;
+}
+
+#under_avatar a:LINK{
+	text-decoration: 		none;
+	padding:				5px 20px 5px 20px;
+	position: 				relative;
+	top:					17px;	
+}
+
+#under_avatar a:HOVER{
+	background: 			#c0c0c0;
+}
+
+#user_data{
+	width:					228px;
+	height: 				200px;
+	float: 					right;
+}
+
+#name{
+	width: 					228px;
+	height:					25px;
+	background-color: 		#eded89;
+}
+
+#name h4{
+	vertical-align:			middle;
+	padding: 				5px;
+	margin-top: 			0px;
+	margin-bottom: 			0px
+}
+
+/*
+*Property for login.jsp
+*/
+
+#form_and_errors{
+	width: 					100%;
+	height:					119px;
+	background: 			#cfcfcf;
+}
+
+#login_form{
+	width: 					200px;
+	text-align: 			center;
+	float: 					left;
+}
+
+.input_text{
+	height: 				20px;
+	width: 					175px;
+	margin:					5px;
+}
+
+.input_submit {
+	margin:					5px 5px 10px 5px;
+	width: 					180px;
+	height: 				27px;
+	background: 			#8ea956;
+}
+
+#errors{
+	position: 				absolute;
+	top:					65px;
+	left: 					580px;
+}
+
+#errors h3{
+	margin: 				0px;
+	color: 					red;
+}
+
+#registration_link{
+	position: 				absolute;
+	top: 					0px;
+	right: 					380px;
+	font-weight: 			bold;			
+}
+
+/*
+*Property for registration.jsp
+*/
+
+#registration_form{
+	width: 					200px;
+	background: 			gray;
+}
+
+#registration_form button {
+	width: 					140px;
+	height: 				30px;
+	background: 			#8ea956;
+	margin: 				10px 0px 10px 0px;
+}
+
+#logo a:LINK{
+	padding: 				0px;
+	margin: 				0px;
+}
+
+#head-bar.#logo a:HOVER{
+	background: 			none;
+}
+
+/*
+*Property for my_friends.jsp
+*/
+
+#all_friends{
+	width: 					100%;
+	border: 				thin dotted gray;
+}
+
+#friend{
+	width: 					200px;
+}
+
+#friend img{
+	width: 					100px;
+	border: 				thin dotted gray;
+	float: 					left;
+}
+
+.not_found{
+	border-bottom: 			thin dotted gray;
+	height: 				200px;
+}
+
+.not_found h1{
+	padding: 				20px;
+}

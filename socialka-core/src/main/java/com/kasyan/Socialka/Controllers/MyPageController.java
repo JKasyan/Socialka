@@ -1,16 +1,23 @@
 package com.kasyan.Socialka.Controllers;
 
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kasyan.Socialka.Dto.SmallImage;
 import com.kasyan.Socialka.Dto.User;
 import com.kasyan.Socialka.Services.UserDaoService;
 
@@ -33,7 +40,30 @@ public class MyPageController {
 		if(email!="anonymousUser"){
 			logger.debug("Email : "+email);
 			User user = (User)userDaoService.getByEmail(email);
+			List<SmallImage> images = user.getSmallImages();
+			String encodedString = null;
+			if(images!=null){
+				SmallImage image = images.get(images.size()-1);
+				Blob blob = image.getSmallPhoto();
+				int length = 0;
+				byte[] bytes = null;
+				try {
+					length = (int)blob.length();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					bytes = image.getSmallPhoto().getBytes(1, length);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				byte[] encoded = Base64.encode(bytes);
+				encodedString = new String(encoded);
+			}
+			boolean isMyPage = true;
+			mv.addObject("isMyPage", isMyPage);
 			mv.addObject("user", user);
+			mv.addObject("image", encodedString);
 			mv.setViewName("page");
 			return mv;
 		}

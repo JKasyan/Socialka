@@ -1,53 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Socialka</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="resources/css/socialka.css" rel="stylesheet">
+<c:url var="cssUrl" value="/resources/css/new_style.css" />
+<link href="${cssUrl}" rel="stylesheet" type="text/css">
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-1.11.3.js"></script>
+<c:url var="faviconUrl" value="/resources/images/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="${faviconUrl}">
+<title>Login</title>
 </head>
-
-	<div class="left-bar"></div>
-	
-	<div class="top-bar">
-		<div class="label"><a href="/socialka-web/friend/my_page.do"><h1>Socialka</h1></a></div>
-
+<div id="head-bar">
+	<div id="head_table">
+		<div id="head_table_row">
+			<div id="logo">
+				<img alt="group"
+					src="<c:url value="/resources/images/socialka_logo.gif"/>">
+			</div>
+		</div>
 	</div>
-	
-		<div class="main-bar">
-		<table>
-			<tr>
-				<td><a href="/socialka-web/friend/my_page.do">My page</a><br />
-				</td>
-			</tr>
-			<tr>
-				<td><a href="/socialka-web/my_friends.do">My friends</a><br />
-				</td>
-			</tr>
-			<tr>
-				<td><a href="/socialka-web/messages.do">My messages</a><br />
-				</td>
-			</tr>
-			<tr>
-				<td><a href="/socialka/properties.do">My properties</a><br />
-				</td>
-			</tr>
-			<tr>
-				<td><a href="/socialka-web/my_groups.do">My groups</a></td>
-			</tr>
-		</table>
+	<div id="registration_link">
+		<a href="${contextPath}/login.html">Log in</a> 
+		<a href="${contextPath}/registration.html?new">Registration</a>
 	</div>
-	
-	<div class="right-bar">
-		<h2>Welcome to the Socialka</h2>
-
-		<a href="login.do" class="button black">Log in</a>
-		<a href="sign_in.do" class="button black">Sign in</a>
-		
-	</div>
-	
+</div>
+<div id="tape"></div>
+<div id="foot-bar"></div>
 </body>
 </html>

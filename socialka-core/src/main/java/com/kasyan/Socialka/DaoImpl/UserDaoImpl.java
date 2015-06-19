@@ -1,100 +1,65 @@
 package com.kasyan.Socialka.DaoImpl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
-import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
+import java.util.List;
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.kasyan.Socialka.Dao.UserDao;
-import com.kasyan.Socialka.Dto.Friend;
-import com.kasyan.Socialka.Dto.Image;
 import com.kasyan.Socialka.Dto.User;
+import com.kasyan.Socialka.Dto.UserRole;
 import com.kasyan.Socialka.Exceptions.UserNotFoundException;
 
 public class UserDaoImpl implements UserDao {
 	
-	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 	
 	public void addUser(User user) {
-		saveObject(user);
-	}
-
-	
-	public boolean isUserExist(int id) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodePassword = encoder.encode(user.getPassword());
+		user.setPassword(encodePassword);
 		Session session = this.sessionFactory.openSession();
-		Query query = session.createQuery("select 1 from User U where U.id = :id");
-		query.setInteger("id", id);
-		return (query.uniqueResult()!=null);
+		Transaction transaction =  session.beginTransaction();
+		session.save(user);
+		UserRole userRole = new UserRole();
+		userRole.setProfile(user);
+		userRole.setRole("ROLE_USER");
+		session.save(userRole);
+		transaction.commit();
 	}
-	
 	
 	public User getByEmail(String email) {
 		Session session = this.sessionFactory.openSession();
-		Criteria cr = session.createCriteria(User.class);
-		cr.add(Restrictions.like("email", email));
-		return (User) cr.uniqueResult();
+		Query query = session.createQuery("select U from User U where U.email = :email");
+		query.setString("email", email);
+		return (User) query.uniqueResult();
+		
 	}
-
-	
-	public void addImage(Image image) {
-		saveObject(image);
-	}
-
 	
 	public User getById(int id) throws UserNotFoundException{
-		if(!isUserExist(id)) throw new UserNotFoundException(id);
 		Session session = this.sessionFactory.openSession();
-		User user = (User) session.load(User.class, id);
-		return user;
+		Query query = session.createQuery("select 1 from User U where U.id = :id");
+		query.setInteger("id", id);
+		if(query.uniqueResult() == null) throw new UserNotFoundException(id);
+		return (User) session.load(User.class, id);
 	}
-	
-	private void saveObject(Object object){
-		Session session = this.sessionFactory.openSession();
-		Transaction transaction =  session.beginTransaction();
-		session.persist(object);
-		transaction.commit();
-		session.close();
-	}
-
-	
-	public List<User> getFriends(String email) {
-		String queryId = "select F.friend from Friend F where email = :email";
-		Session session = this.sessionFactory.openSession();
-		Query query = session.createQuery(queryId);
-		query.setString("email", email);
-		List<Integer> listIdFriends = query.list();
-		List<User> friends = new ArrayList<User>(listIdFriends.size());
-		Query queryGetFriends = session.createQuery("from User U where U.id in (:listIdFriends)");
-		queryGetFriends.setParameterList("listIdFriends", listIdFriends);
-		friends = queryGetFriends.list();
-		return friends;
-	}
-
 	
 	public List<User> getAllUsers() {
 		String querySQL = "from User";
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery(querySQL);
+		@SuppressWarnings("unchecked")
 		List<User> list = query.list();
 		return list;
 	}
 
-	
-	public void addFriendship(Friend friend) {
-		saveObject(friend);
-	}
 }

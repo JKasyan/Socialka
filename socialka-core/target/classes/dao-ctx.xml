@@ -13,7 +13,6 @@
         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
         ">
 
-	<!-- Hibernate 4 SessionFactory Bean definition -->
 	<bean id="hibernate4AnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -21,11 +20,10 @@
 			<list>
 				<value>com.kasyan.Socialka.Dto.User</value>
 				<value>com.kasyan.Socialka.Dto.Image</value>
-				<value>com.kasyan.Socialka.Dto.Friend</value>
+				<value>com.kasyan.Socialka.Dto.Friendship</value>
 				<value>com.kasyan.Socialka.Dto.UserRole</value>
-				<!-- 
-				<value>com.kasyan.Socialka.Dto.Password</value>
-				 -->
+				<value>com.kasyan.Socialka.Dto.SmallImage</value>
+				<value>com.kasyan.Socialka.Dto.Group</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -40,6 +38,17 @@
 	<bean name="userDao" class="com.kasyan.Socialka.DaoImpl.UserDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
-	
+
+	<bean name="imageDao" class="com.kasyan.Socialka.DaoImpl.ImageDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
+	<bean name="groupDao" class="com.kasyan.Socialka.DaoImpl.GroupDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
+	<bean name="friendshipDao" class="com.kasyan.Socialka.DaoImpl.FriendshipDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
 	
 </beans>

@@ -7,18 +7,22 @@ http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config="true" use-expressions="true">
-		
+	    
 		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/my_page**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/my_friends**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/friend/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/groups/**" access="hasRole('ROLE_USER')" />
 		
 		<access-denied-handler error-page="/403.do" />
 
 		<form-login 
-		    login-page="/login.do" 
-		    default-target-url="/my_page.do"
-			authentication-failure-url="/login.do?error" 
+		    login-page="/login.html" 
+		    default-target-url="/my_page.html"
+			authentication-failure-url="/login.html?error" 
 			username-parameter="email"
 			password-parameter="password" />
-		<logout logout-success-url="/login.do" />
+		<logout logout-success-url="/login.html" />
 
 		<csrf />
 	</http>
@@ -34,7 +38,7 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 	<beans:bean id="authProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<beans:property name="userDetailsService" ref="signInServiceImpl" />
-		<beans:property name="passwordEncoder" ref="encoder"></beans:property>
+		<beans:property name="passwordEncoder" ref="encoder"/>
 	</beans:bean>
 	
 </beans:beans>
