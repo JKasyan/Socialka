@@ -10,27 +10,10 @@
 <c:url var="cssUrl" value="/resources/css/new_style.css" />
 <link href="${cssUrl}" rel="stylesheet" type="text/css">
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<script type="text/javascript"
-	src="${contextPath}/resources/js/jquery-1.11.3.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/resources/js/logOut.js"></script>
 <c:url var="faviconUrl" value="/resources/images/favicon.ico" />
 <link rel="shortcut icon" type="image/x-icon" href="${faviconUrl}">
 </head>
 <body>
-	<script type="text/javascript">
-		function beFriends(id){
-			$.ajax({
-				url : 'add_to_friend.html',
-				data: {queryId:id},
-				type : 'GET',
-				success : function(data) {
-					document.getElementById("be_friends_button").disabled = true;
-					$("be_friends_button").val("Request sent");
-				}
-			});
-		}
-	</script>
 	<div id="head-bar">
 		<div id="head_table">
 			<div id="head_table_row">
@@ -97,11 +80,7 @@
 				</div>
 				<div id="friends_row" >
 					<a href="${contextPath}/my_friends.html">My friends</a>
-					<div class="notification">
-						<c:if test="${proposalBeFriend} == true">
-						+${quantityPoposals}
-						</c:if>
-					</div>
+					<div class="notification"></div>
 				</div>
 				<div>
 					<a href="${contextPath}/messages.html">My messages</a>
@@ -124,5 +103,19 @@
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 	</form>
+	<script type="text/javascript"
+		src="${contextPath}/resources/js/jquery-1.11.3.js"></script>
+	<script type="text/javascript"
+		src="${contextPath}/resources/js/socialka.js"></script>
+	<script type="text/javascript">
+	setInterval(upDateProposalsBeFriend, 60000);
+	</script>
+	<script type="text/javascript">
+	$("#avatar img").hover(function(){
+		console.log("On image");
+	},function(){
+		console.log("Out of image")
+	})
+	</script>
 </body>
 </html>

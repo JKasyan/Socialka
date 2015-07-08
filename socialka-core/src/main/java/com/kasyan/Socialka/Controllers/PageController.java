@@ -2,7 +2,6 @@ package com.kasyan.Socialka.Controllers;
 
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +42,8 @@ public class PageController {
 	public void setFriendshipDaoService(FriendshipDaoService friendshipDaoService) {
 		this.friendshipDaoService = friendshipDaoService;
 	}
-
+	
+	@Transactional
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ModelAndView showFriendProfile(@PathVariable int id, Model model, HttpServletResponse response) 
 			throws UserNotFoundException{
@@ -55,10 +56,9 @@ public class PageController {
 		if(!isMyPage){
 			friendsStatus = friendshipDaoService.getFriendsStatus(myEmail, id);
 		}
-		List<SmallImage> images = user.getSmallImages();
+		SmallImage image = user.getSmallImage();
 		String encodedString = null;
-		if(images!=null){
-			SmallImage image = images.get(images.size()-1);
+		if(image!=null){
 			Blob blob = image.getSmallPhoto();
 			int length = 0;
 			byte[] bytes = null;

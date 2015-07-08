@@ -90,7 +90,7 @@ body {
 }
 
 #friends_row{
-	vertical-align: 		middle;
+	height: 				33px;
 }
 
 .notification{
@@ -98,6 +98,13 @@ body {
 	width: 					33px;
 	float: 					right;
 	text-align:				center;
+	vertical-align: 		middle;
+}
+
+.notification span{
+	margin: 				0px;
+	padding:				1px;
+	background-color:		#a7a59e;
 }
 
 /*
@@ -314,18 +321,65 @@ body {
 */
 
 #all_friends{
-	width: 					100%;
-	border: 				thin dotted gray;
+	width: 					600px;
+	border-bottom: 			thin dotted gray;
 }
 
-#friend{
-	width: 					200px;
+.friend{
+	width: 					600px;
+	height:					130px;
+	border-bottom: 			thin dotted gray;
 }
 
-#friend img{
+.av_fr{
+	text-align:				center;
+	width: 					170px;
+	height:					130px;
+	float: 					left;
+	border-right: 			thin dotted gray;
+}
+
+.av_fr img{
 	width: 					100px;
 	border: 				thin dotted gray;
+	margin-top: 			10px;
+}
+
+.fr_info{
+	width: 					220px;
+	height:					130px;
 	float: 					left;
+	border-right: 			thin dotted gray;
+}
+
+.fr_info a:link{
+	padding: 				0px 20px 0px 20px;
+	font-size: 				110%;
+	text-decoration: 		none;
+	font-weight: 			bold;
+	position: 				relative;
+	top:					10px;
+}
+
+.fr_info a:hover{
+	background-color:		#8ea956;
+}
+
+.tamp_fr{
+	width: 					180px;
+	height:					130px;
+	line-height: 			2.5em;
+	float: 					left;
+}
+
+.tamp_fr a:link{
+	padding: 				0px 20px 0px 20px;
+	font-size: 				110%;
+	text-decoration: 		none;
+}
+
+.tamp_fr a:hover{
+	background-color:		#8ea956;
 }
 
 .not_found{
@@ -335,4 +389,8 @@ body {
 
 .not_found h1{
 	padding: 				20px;
+}
+
+.delete_from_friends{
+	
 }

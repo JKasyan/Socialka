@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kasyan.Socialka.Services.FriendshipDaoService;
 
-
 @Controller
 public class AddFriendController {
 	
@@ -29,7 +28,7 @@ public class AddFriendController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String emailOne = authentication.getName();
 		int idInt = Integer.valueOf(id);
-		logger.debug("User with email "+emailOne+" wants to friend with user with id "+idInt);
+		logger.debug("User with email "+emailOne+" wants to be friend with user with id "+idInt);
 		friendshipDaoService.addProposalBeFriend(emailOne, idInt);
 		return new String("succes");
 	}
@@ -38,4 +37,5 @@ public class AddFriendController {
 	public void confirmFriendship(){
 		
 	}
+
 }

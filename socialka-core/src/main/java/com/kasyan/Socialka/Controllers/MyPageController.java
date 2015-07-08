@@ -2,8 +2,6 @@ package com.kasyan.Socialka.Controllers;
 
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,10 +38,9 @@ public class MyPageController {
 		if(email!="anonymousUser"){
 			logger.debug("Email : "+email);
 			User user = (User)userDaoService.getByEmail(email);
-			List<SmallImage> images = user.getSmallImages();
+			SmallImage image = user.getSmallImage();
 			String encodedString = null;
-			if(images!=null){
-				SmallImage image = images.get(images.size()-1);
+			if(image!=null ){
 				Blob blob = image.getSmallPhoto();
 				int length = 0;
 				byte[] bytes = null;

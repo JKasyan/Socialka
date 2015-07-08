@@ -1,9 +1,6 @@
 package com.kasyan.Socialka.Dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -42,11 +40,18 @@ public class User implements Serializable{
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 	
+	/*
 	@OneToMany(targetEntity=SmallImage.class, fetch=FetchType.LAZY, mappedBy="user")
 	private List<SmallImage> smallImages = new ArrayList<SmallImage>();
-	
+	*/
+	@OneToOne(mappedBy="user", fetch=FetchType.LAZY)
+	private SmallImage SmallImage;
+	/*
 	@OneToMany(targetEntity=Image.class, fetch=FetchType.LAZY, mappedBy="user")
 	private Set<Image> images = new HashSet<Image>(0);
+	*/
+	@OneToOne(mappedBy="user", fetch=FetchType.LAZY)
+	private Image image;
 	
 	@OneToMany(targetEntity=UserRole.class, fetch=FetchType.LAZY, mappedBy="user")
 	private Set<UserRole> userRole;
@@ -104,18 +109,33 @@ public class User implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	/*
 	public Set<Image> getImages() {
 		return images;
 	}
 	public void setImages(Set<Image> images) {
 		this.images = images;
 	}
-	
+	*/
+	/*
 	public List<SmallImage> getSmallImages() {
 		return smallImages;
 	}
 	public void setSmallImages(List<SmallImage> smallImages) {
 		this.smallImages = smallImages;
+	}
+	*/
+	public SmallImage getSmallImage() {
+		return SmallImage;
+	}
+	public void setSmallImage(SmallImage smallImage) {
+		SmallImage = smallImage;
+	}
+	public Image getImage() {
+		return image;
+	}
+	public void setImage(Image image) {
+		this.image = image;
 	}
 	@Override
 	public String toString() {

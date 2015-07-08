@@ -4,11 +4,20 @@ import java.util.List;
 
 
 
+
+
+
+
+import com.kasyan.Socialka.Dto.Friendship;
 import com.kasyan.Socialka.Dto.User;
 
 public interface FriendshipDao {
-	public void confirmFriendship(int idOne, int idTwo);
+	public void confirmFriendship(int idOne, int idTwo);//
 	public void addProposalBeFriend(String emailOne, int idTwo);
-	public List<User> getFriends(int id);
+	public List<User> getFriends(String email);
 	public int getFriendsStatus(String emailOne, int idTwo);
+	public Long getQuantityProposals(String email);
+	public void deleteFromFriends(String emailOne, int idTwo);
+	public void changeFriendshipStatus(String emailOne, int idTwo);
+	public void update(Friendship fr);
 }

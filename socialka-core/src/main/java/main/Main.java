@@ -1,36 +1,9 @@
 package main;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.sql.Blob;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
-import javax.imageio.ImageIO;
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.kasyan.Socialka.Dto.Friendship;
-import com.kasyan.Socialka.Dto.Group;
-import com.kasyan.Socialka.Dto.Image;
-import com.kasyan.Socialka.Dto.SmallImage;
-import com.kasyan.Socialka.Dto.User;
-import com.kasyan.Socialka.Exceptions.UserNotFoundException;
 import com.kasyan.Socialka.Services.FriendshipDaoService;
-import com.kasyan.Socialka.Services.GroupDaoService;
-import com.kasyan.Socialka.Services.ImageDaoService;
-import com.kasyan.Socialka.Services.UserDaoService;
-import com.kasyan.Socialka.Utils.ImageResize;
 
 /**
  * @version
@@ -39,12 +12,56 @@ import com.kasyan.Socialka.Utils.ImageResize;
  * 
  */
 public class Main {
+	
+	static final  String[] NAMES_MEN = {"Evgen", "Alexandr", "Volodimir","Vadim", "Anton", "Denis",
+		"Dmitro", "Konstyantin", "Vitaly", "Jaroslav", "Uriy", "Vlad", "Andriy", "Mykola", "Sergiy",
+		"Vasiliy", "Ivan", "Mihaylo"};
+	
+	static final  String[] NAMES_WOMEN = {};
+	
+	static final String[] SECOND_NAMES = {};
 
 	public static void main(String args[]) {
+		
 		/*
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("socialka-app-ctx.xml");
-		UserDaoService service = (UserDaoService) context.getBean("userDaoService");
+		UserDaoService userDaoService = (UserDaoService) context.getBean("userDaoService");
+		ImageDaoService imageDaoService = (ImageDaoService) context.getBean("imageDaoService");
+		try {
+			User user = userDaoService.getById(5);
+			File file  = new File("C:\\Users\\Evgen\\Desktop\\VTuX-Fl2wXI.jpg");
+			byte[] array = Files.readAllBytes(file.toPath());
+			SmallImage si = new SmallImage();
+			si.setSmallPhoto(new SerialBlob(array));
+			//
+			si.setUser(user);
+			BufferedImage original = ImageIO.read(file);
+			int type = original.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : original.getType();
+			BufferedImage resized = ImageResize.resizeImage(original, type);
+			Image image  = new Image();
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(resized, "jpg", baos);
+			baos.flush();
+			Blob blob  = new SerialBlob(baos.toByteArray());
+			image.setPhoto(blob);
+			//
+			image.setUser(user);
+			imageDaoService.addImage(image, si);
+			//
+			user.setImage(image);
+			user.setSmallImage(si);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SerialException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (UserNotFoundException e) {
+			e.printStackTrace();
+		}
+		*/
+		
 		/*
 		User user = new User();
 		user.setEmail("mykola@gmail.com");
@@ -148,9 +165,25 @@ public class Main {
 		User user = userDaoService.getByEmail("vika@gmail.com");
 		System.out.println(user);
 		*/
+		/*
 		ApplicationContext context = new ClassPathXmlApplicationContext("socialka-app-ctx.xml");
 		FriendshipDaoService friendshipService = (FriendshipDaoService) context.getBean("friendshipDaoService");
 		UserDaoService userDaoService = (UserDaoService) context.getBean("userDaoService");
 		friendshipService.addProposalBeFriend("vika@gmail.com", new Integer(9));
+		*/
+		/*
+		ApplicationContext context = new ClassPathXmlApplicationContext("socialka-app-ctx.xml");
+		FriendshipDaoService friendshipService = (FriendshipDaoService) context.getBean("friendshipDaoService");
+		/*
+		List<User> friends = friendshipService.getFriends("vika@gmail.com");
+		System.out.println(friends);
+		*/
+		/*
+		System.out.println("Quantity "+friendshipService.getQuantityProposals("mykola@gmail.com"));
+		*/
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("socialka-app-ctx.xml");
+		FriendshipDaoService friendshipService = (FriendshipDaoService) context.getBean("friendshipDaoService");
+		friendshipService.deleteFromFriends("MarchenkoIvan@gmail.com", 5);
 	}
 }
