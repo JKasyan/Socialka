@@ -9,6 +9,14 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	</parent>
 	<artifactId>socialka-core</artifactId>
 
+	<properties>
+		<out.name>${project.artifactId}</out.name>
+		<out.folder>out</out.folder>
+		<source.folder>source</source.folder>
+		<resource.folder>resource</resource.folder>
+		<jetty.version>9.3.0.M1</jetty.version>
+	</properties>
+
 	<dependencies>
 
 		<dependency>
@@ -52,14 +60,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector}</version>
 		</dependency>
-		
-		<!-- 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>${dbcp2.version}</version>
-		</dependency>
-		 -->
 		 
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -124,15 +124,53 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>9.1-901-1.jdbc4</version>
         </dependency>
 
+		<!-- Jetty -->
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-jsp</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
     </dependencies>
 
 	<build>
+
+		<finalName>${out.name}</finalName>
+		<directory>${out.folder}</directory>
+		<testOutputDirectory>${out.folder}</testOutputDirectory>
+		<outputDirectory>${out.folder}</outputDirectory>
+		<testSourceDirectory>${source.folder}</testSourceDirectory>
+		<sourceDirectory>${source.folder}</sourceDirectory>
+
+		<resources>
+			<resource>
+				<directory>${resource.folder}</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
 				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
