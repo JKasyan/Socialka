@@ -1,5 +1,6 @@
 package com.kasyan.Socialka.controllers;
 
+import com.kasyan.Socialka.services.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,18 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kasyan.Socialka.dto.User;
-import com.kasyan.Socialka.services.UserDaoService;
 
 @Controller
 @RequestMapping(value="/registration")
 public class RegistrationController {
 	
 	@Autowired
-	private UserDaoService userDaoService;
+	private UserService userService;
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	
-	public void setUserDaoService(UserDaoService userDaoService) {
-		this.userDaoService = userDaoService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, params="new")
@@ -34,7 +34,7 @@ public class RegistrationController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String saveUser(User user){
 		logger.debug(user.toString());
-		userDaoService.addUser(user);
+		userService.addUser(user);
 		return "/login";
 	}
 }

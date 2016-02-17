@@ -1,64 +1,44 @@
 package com.kasyan.Socialka.dto;
 
-import java.sql.Blob;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import javax.persistence.*;
+
 @Entity
-//@Table(name="small_images")
-@Table(name="new_small_images")
+@Table(name="small_images")
 public class SmallImage {
-	
-	
-	@GenericGenerator(name = "generator", strategy = "foreign", 
-	parameters = {@Parameter(name = "property", value = "user")})
+
 	@Id
-	@GeneratedValue(generator="generator")
-	@Column(name="id_user",unique=true,nullable=false)
-	private int id;
+	@GenericGenerator(name = "generator", strategy = "foreign",
+			parameters = @Parameter(name = "property", value = "image"))
+	@GeneratedValue(generator = "generator")
+	@Column(name="id_image")
+	private int idImage;
+
+	@Column(name="small_image_value")
+	private byte[] smallPhoto;
 	
-	//@Column(name="small_photo")
-	@Column(name="small_image")
-	private Blob smallPhoto;
-	
-	//@ManyToOne(fetch=FetchType.LAZY, targetEntity=User.class)
-	//@JoinColumn(name="id_user")
-	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
-	private User user;
+	private Image image;
 
-	public int getId() {
-		return id;
+	public int getIdImage() {
+		return idImage;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setIdImage(int idImage) {
+		this.idImage = idImage;
 	}
-
-	public Blob getSmallPhoto() {
+	public byte[] getSmallPhoto() {
 		return smallPhoto;
 	}
-
-	public void setSmallPhoto(Blob smallPhoto) {
+	public void setSmallPhoto(byte[] smallPhoto) {
 		this.smallPhoto = smallPhoto;
 	}
-
-	public User getUser() {
-		return user;
+	public Image getImage() {
+		return image;
 	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setImage(Image image) {
+		this.image = image;
 	}
 }

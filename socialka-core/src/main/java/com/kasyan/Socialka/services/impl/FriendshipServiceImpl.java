@@ -12,9 +12,9 @@ import java.util.List;
 
 import com.kasyan.Socialka.dao.FriendshipDao;
 import com.kasyan.Socialka.dto.User;
-import com.kasyan.Socialka.services.FriendshipDaoService;
+import com.kasyan.Socialka.services.FriendshipService;
 
-public class FriendshipDaoServiceImpl implements FriendshipDaoService {
+public class FriendshipServiceImpl implements FriendshipService {
 	
 	private FriendshipDao friendshipDao;
 

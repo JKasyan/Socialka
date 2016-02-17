@@ -8,6 +8,6 @@
 			<generator class="identity" />
 		</id>
 		<property name="title" type="string" column="title" />
-		<property name="photo" type="blob" column="photo" />
+		<property name="getImageValue" type="blob" column="imageValue" />
 	</class>
 </hibernate-mapping>

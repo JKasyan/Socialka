@@ -9,30 +9,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kasyan.Socialka.dto.Group;
-import com.kasyan.Socialka.services.GroupDaoService;
+import com.kasyan.Socialka.services.GroupService;
 
 @Controller
 @RequestMapping("/groups")
 public class GroupsController {
 	
 	@Autowired
-	private GroupDaoService groupDaoService;
+	private GroupService groupService;
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	
-	public void setGroupDaoService(GroupDaoService groupDaoService) {
-		this.groupDaoService = groupDaoService;
+	public void setGroupService(GroupService groupService) {
+		this.groupService = groupService;
 	}
 
 	@RequestMapping(value="/{groupName}", method=RequestMethod.GET)
 	public ModelAndView getGroup(@PathVariable String groupName){
 		logger.debug("Group name "+groupName);
-		Group group = groupDaoService.getGroup(groupName);
+		Group group = groupService.getGroup(groupName);
 		logger.debug(group);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("description", group.getDescription());
 		mv.addObject("title", group.getTitle());
-		mv.addObject("town", group.getTown());
+		mv.addObject("town", group.getCity());
 		mv.setViewName("group");
 		return mv;
 	}

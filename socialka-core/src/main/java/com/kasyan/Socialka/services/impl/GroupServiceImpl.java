@@ -5,9 +5,9 @@ import java.util.List;
 import com.kasyan.Socialka.dao.GroupDao;
 import com.kasyan.Socialka.dto.Group;
 import com.kasyan.Socialka.dto.User;
-import com.kasyan.Socialka.services.GroupDaoService;
+import com.kasyan.Socialka.services.GroupService;
 
-public class GroupDaoServiceImpl implements GroupDaoService {
+public class GroupServiceImpl implements GroupService {
 	
 	private GroupDao groupDao;
 

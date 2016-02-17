@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
 		Transaction transaction =  session.beginTransaction();
 		session.save(user);
 		UserRole userRole = new UserRole();
-		userRole.setProfile(user);
+		userRole.setUser(user);
 		userRole.setRole("ROLE_USER");
 		session.save(userRole);
 		transaction.commit();

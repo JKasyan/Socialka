@@ -5,9 +5,9 @@ import java.util.List;
 import com.kasyan.Socialka.dao.UserDao;
 import com.kasyan.Socialka.dto.User;
 import com.kasyan.Socialka.exceptions.UserNotFoundException;
-import com.kasyan.Socialka.services.UserDaoService;
+import com.kasyan.Socialka.services.UserService;
 
-public class UserDaoServiceImpl implements UserDaoService {
+public class UserServiceImpl implements UserService {
 	
 	private UserDao userDao;
 

@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kasyan.Socialka.services.FriendshipDaoService;
+import com.kasyan.Socialka.services.FriendshipService;
 
+@SuppressWarnings({"ALL", "SpringJavaAutowiringInspection"})
 @Controller
 public class AddFriendController {
 	
 	@Autowired
-	private FriendshipDaoService friendshipDaoService;
+	private FriendshipService friendshipService;
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	
-	public void setFriendshipDaoService(FriendshipDaoService friendshipDaoService) {
-		this.friendshipDaoService = friendshipDaoService;
+	public void setFriendshipService(FriendshipService friendshipService) {
+		this.friendshipService = friendshipService;
 	}
 
 	@RequestMapping(value="/friend/add_to_friend", method=RequestMethod.GET)
@@ -29,7 +30,7 @@ public class AddFriendController {
 		String emailOne = authentication.getName();
 		int idInt = Integer.valueOf(id);
 		logger.debug("User with email "+emailOne+" wants to be friend with user with id "+idInt);
-		friendshipDaoService.addProposalBeFriend(emailOne, idInt);
+		friendshipService.addProposalBeFriend(emailOne, idInt);
 		return "succes";
 	}
 	

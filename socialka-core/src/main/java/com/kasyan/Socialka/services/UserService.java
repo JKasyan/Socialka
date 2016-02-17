@@ -8,12 +8,12 @@ import com.kasyan.Socialka.dto.User;
 import com.kasyan.Socialka.exceptions.UserNotFoundException;
 
 @Transactional
-public interface UserDaoService {
+public interface UserService {
 	
-	public void addUser(User user);
-	public User getByEmail(String email);
-	public User getById(int id) throws UserNotFoundException;
-	public List<User> getAllUsers();
+	void addUser(User user);
+	User getByEmail(String email);
+	User getById(int id) throws UserNotFoundException;
+	List<User> getAllUsers();
 	/*
 	public void addImage(Image image);
 	public List<User> getFriends(String email);

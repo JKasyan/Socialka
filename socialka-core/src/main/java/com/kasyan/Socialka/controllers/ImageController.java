@@ -12,27 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kasyan.Socialka.dto.Image;
-import com.kasyan.Socialka.services.ImageDaoService;
+import com.kasyan.Socialka.services.ImageService;
 
 @Controller
 @RequestMapping("/getImage")
 public class ImageController {
 	
 	@Autowired
-	private ImageDaoService imageDaoService;
+	private ImageService imageService;
 	private final Logger logger = Logger.getLogger(ImageController.class.getName());
 	
-	public void setImageDaoService(ImageDaoService imageDaoService) {
-		this.imageDaoService = imageDaoService;
+	public void setImageService(ImageService imageService) {
+		this.imageService = imageService;
 	}
 
 	@RequestMapping(value="/{number}", method=RequestMethod.GET)
 	public void showImage(@PathVariable int number, HttpServletResponse response) throws Exception{
 		logger.debug("Number of photo: "+number);
 		response.setContentType("image/jpeg");
-		Image image = imageDaoService.getByNumber(number);
-		Blob blob = image.getPhoto();
-		byte[] bytes = blob.getBytes(1, (int) blob.length());
+		Image image = imageService.getByNumber(number);
+		byte[] bytes = image.getImageValue();
 		response.getOutputStream().write(bytes);
 		response.getOutputStream().flush();
 		logger.debug("Success!");

@@ -4,9 +4,9 @@ import com.kasyan.Socialka.dao.ImageDao;
 import com.kasyan.Socialka.dto.Image;
 import com.kasyan.Socialka.dto.SmallImage;
 import com.kasyan.Socialka.dto.User;
-import com.kasyan.Socialka.services.ImageDaoService;
+import com.kasyan.Socialka.services.ImageService;
 
-public class ImageDaoServiceImpl implements ImageDaoService {
+public class ImageServiceImpl implements ImageService {
 	
 	private ImageDao imageDao;
 

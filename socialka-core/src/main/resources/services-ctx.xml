@@ -7,19 +7,19 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<bean name="userDaoService" class="com.kasyan.Socialka.services.impl.UserDaoServiceImpl">
+	<bean name="userService" class="com.kasyan.Socialka.services.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao" />
 	</bean>
 
-	<bean name="imageDaoService" class="com.kasyan.Socialka.services.impl.ImageDaoServiceImpl">
+	<bean name="imageDaoService" class="com.kasyan.Socialka.services.impl.ImageServiceImpl">
 		<property name="imageDao" ref="imageDao" />
 	</bean>
 
-	<bean name="groupDaoService" class="com.kasyan.Socialka.services.impl.GroupDaoServiceImpl">
+	<bean name="groupDaoService" class="com.kasyan.Socialka.services.impl.GroupServiceImpl">
 		<property name="groupDao" ref="groupDao" />
 	</bean>
 
-	<bean name="friendshipDaoService" class="com.kasyan.Socialka.services.impl.FriendshipDaoServiceImpl">
+	<bean name="friendshipDaoService" class="com.kasyan.Socialka.services.impl.FriendshipServiceImpl">
 		<property name="friendshipDao" ref="friendshipDao" />
 	</bean>
 

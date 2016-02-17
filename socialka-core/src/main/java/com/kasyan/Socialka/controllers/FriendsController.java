@@ -22,17 +22,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kasyan.Socialka.dto.SmallImage;
 import com.kasyan.Socialka.dto.User;
-import com.kasyan.Socialka.services.FriendshipDaoService;
+import com.kasyan.Socialka.services.FriendshipService;
 
 @Controller
 public class FriendsController {
 	
 	@Autowired
-	private FriendshipDaoService friendshipDaoService;
+	private FriendshipService friendshipService;
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	
-	public void setFriendshipDaoService(FriendshipDaoService friendshipDaoService) {
-		this.friendshipDaoService = friendshipDaoService;
+	public void setFriendshipService(FriendshipService friendshipService) {
+		this.friendshipService = friendshipService;
 	}
 
 	@RequestMapping(value="/my_friends", method=RequestMethod.GET)
@@ -41,40 +41,40 @@ public class FriendsController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String email = authentication.getName();
 		logger.debug("Email: "+email);
-		if(email!="anonymousUser" && email!=null){
-			List<User> friends = friendshipDaoService.getFriends(email);
-			logger.debug("friends.size() "+friends.size());
-			List<String> avatars = new ArrayList<String>();
-			if(friends != null & !friends.isEmpty()){
-				for(User user:friends){
-					SmallImage smallImage = user.getSmallImage();
-					if(smallImage!=null){
-						Blob blob = smallImage.getSmallPhoto();
-						int length = 0;
-						byte[] bytes = null;
-						try {
-							length = (int)blob.length();
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
-						try {
-							bytes = smallImage.getSmallPhoto().getBytes(1, length);
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-						byte[] encoded = Base64.encode(bytes);
-						avatars.add(new String(encoded));
-					}else{
-						avatars.add(null);
-					}
-				}
-			}
-			logger.debug("avatars.size() "+avatars.size());
-			mv.addObject("friends", friends);
-			mv.addObject("avatars", avatars);
-			mv.setViewName("my_friends");
-			return mv;
-		}
+//		if(email!="anonymousUser" && email!=null){
+//			List<User> friends = friendshipService.getFriends(email);
+//			logger.debug("friends.size() "+friends.size());
+//			List<String> avatars = new ArrayList<String>();
+//			if(friends != null & !friends.isEmpty()){
+//				for(User user:friends){
+//					SmallImage smallImage = user.getSmallImage();
+//					if(smallImage!=null){
+//						Blob blob = smallImage.getSmallPhoto();
+//						int length = 0;
+//						byte[] bytes = null;
+//						try {
+//							length = (int)blob.length();
+//						} catch (SQLException e1) {
+//							e1.printStackTrace();
+//						}
+//						try {
+//							bytes = smallImage.getSmallPhoto().getBytes(1, length);
+//						} catch (SQLException e) {
+//							e.printStackTrace();
+//						}
+//						byte[] encoded = Base64.encode(bytes);
+//						avatars.add(new String(encoded));
+//					}else{
+//						avatars.add(null);
+//					}
+//				}
+//			}
+//			logger.debug("avatars.size() "+avatars.size());
+//			mv.addObject("friends", friends);
+//			mv.addObject("avatars", avatars);
+//			mv.setViewName("my_friends");
+//			return mv;
+//		}
 		mv.setViewName("redirect:/index.jsp");
 		return mv;
 	}
@@ -83,7 +83,7 @@ public class FriendsController {
 	public @ResponseBody String showProposalsBeFriend(){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String email = authentication.getName();
-		long quantity = friendshipDaoService.getQuantityProposals(email);
+		long quantity = friendshipService.getQuantityProposals(email);
 		return "+"+String.valueOf(quantity);
 	}
 	
@@ -92,7 +92,7 @@ public class FriendsController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String email = authentication.getName();
 		logger.debug("User with email "+email+" wants to delete from friends user with id "+id);
-		friendshipDaoService.deleteFromFriends(email, Integer.valueOf(id));
+		friendshipService.deleteFromFriends(email, Integer.valueOf(id));
 		return "succes";
 	}
 	
@@ -101,7 +101,7 @@ public class FriendsController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String emailOne = authentication.getName();
 		int idInt = Integer.valueOf(id);
-		friendshipDaoService.returnFriendship(emailOne, idInt);
+		friendshipService.returnFriendship(emailOne, idInt);
 		logger.debug("User with email "+emailOne+" wants to return to friend user with id "+idInt);
 		return "";
 	}

@@ -39,7 +39,8 @@
 					<div id="avatar">
 						<c:choose>
 							<c:when test="${image!=null}">
-								<img alt="avatar" src="data:image/jpeg;base64,${image}">
+								<%--<img alt="avatar" src="data:image/jpeg;base64,${image}">--%>
+								<img alt="avatar" src="images/${user.getAvatarId()}">
 							</c:when>
 							<c:when test="${image==null}">
 								<img alt="avatar" style="width: 150px"
