@@ -18,7 +18,9 @@ import com.kasyan.Socialka.dao.FriendshipDao;
 import com.kasyan.Socialka.dto.Friendship;
 import com.kasyan.Socialka.dto.Status;
 import com.kasyan.Socialka.dto.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class FriendshipDaoImpl implements FriendshipDao {
 
 	private SessionFactory sessionFactory;

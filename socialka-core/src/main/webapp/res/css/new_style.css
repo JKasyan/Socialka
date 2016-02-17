@@ -39,7 +39,7 @@ body {
 #head-bar input{
 	width: 					150px;
 	height:					20px;
-	margin:					15px 0px 15px 0px;*/
+	margin:					15px 0px 15px 0px;
 }
 
 #head-bar a:LINK{		
@@ -312,7 +312,7 @@ body {
 	margin: 				0px;
 }
 
-#head-bar.#logo a:HOVER{
+#head-bar.logo a:HOVER{
 	background: 			none;
 }
 

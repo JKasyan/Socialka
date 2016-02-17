@@ -9,7 +9,9 @@ import com.kasyan.Socialka.dao.ImageDao;
 import com.kasyan.Socialka.dto.Image;
 import com.kasyan.Socialka.dto.SmallImage;
 import com.kasyan.Socialka.dto.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ImageDaoImpl implements ImageDao {
 	
 	private SessionFactory sessionFactory;

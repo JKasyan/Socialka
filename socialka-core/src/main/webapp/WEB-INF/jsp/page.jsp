@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${user.getName()}${user.getLastName()}</title>
-<c:url var="cssUrl" value="/resources/css/new_style.css" />
+<c:url var="cssUrl" value="new_style.css" />
 <link href="${cssUrl}" rel="stylesheet" type="text/css">
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:url var="faviconUrl" value="/resources/images/favicon.ico" />

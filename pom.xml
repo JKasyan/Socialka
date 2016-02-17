@@ -25,6 +25,5 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
  
     <modules>
     	<module>socialka-core</module>
-    	<module>socialka-web</module>
     </modules>
 </project>

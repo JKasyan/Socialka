@@ -14,9 +14,11 @@ import com.kasyan.Socialka.dao.UserDao;
 import com.kasyan.Socialka.dto.User;
 import com.kasyan.Socialka.dto.UserRole;
 import com.kasyan.Socialka.exceptions.UserNotFoundException;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserDaoImpl implements UserDao {
-	
+
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {

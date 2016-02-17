@@ -6,9 +6,13 @@ import com.kasyan.Socialka.dao.UserDao;
 import com.kasyan.Socialka.dto.User;
 import com.kasyan.Socialka.exceptions.UserNotFoundException;
 import com.kasyan.Socialka.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
-	
+
+	@Autowired
 	private UserDao userDao;
 
 	public void setUserDao(UserDao userDao) {

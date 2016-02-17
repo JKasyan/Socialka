@@ -11,11 +11,14 @@ import org.hibernate.SessionFactory;
 import com.kasyan.Socialka.dao.GroupDao;
 import com.kasyan.Socialka.dto.Group;
 import com.kasyan.Socialka.dto.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class GroupDaoImpl implements GroupDao {
-	
+
 	private SessionFactory sessionFactory;
-	
+
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

@@ -7,7 +7,7 @@
 *.iws
 *.war
 *.jar
-*.png
+#*.png
 
 #log files
 *.log*
