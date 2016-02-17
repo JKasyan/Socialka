@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
 	<mvc:annotation-driven />
-	<context:component-scan base-package="com.kasyan.Socialka.Controllers"/>
+	<context:component-scan base-package="com.kasyan.Socialka.controllers"/>
 	 
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

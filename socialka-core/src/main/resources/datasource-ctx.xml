@@ -32,7 +32,7 @@
  
 	<aop:config>
 	    <aop:pointcut id="userServicePointCut"
-		expression="execution(* com.kasyan.Socialka.Services.Impl.*SignInServiceImpl.*(..))" />
+		expression="execution(* com.kasyan.Socialka.services.Impl.*SignInServiceImpl.*(..))" />
 	    <aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" />
 	</aop:config>
 	

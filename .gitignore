@@ -1,0 +1,20 @@
+
+# IntelliJ Idea project files
+.idea
+/target
+*.iml
+*.ipr
+*.iws
+*.war
+*.jar
+*.png
+
+#log files
+*.log*
+
+# Netbeans project files
+nbproject
+
+# Always ignore these directories/files
+target
+logs

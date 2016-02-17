@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.kasyan.Socialka.Dto.Image" table="photos" entity-name="Photo" >
+	<class name="com.kasyan.Socialka.dto.Image" table="photos" entity-name="Photo" >
 		<id name="id" type="int">
 			<column name="id_photo" />
 			<generator class="identity" />
