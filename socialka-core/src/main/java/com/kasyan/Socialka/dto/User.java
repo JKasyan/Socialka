@@ -34,9 +34,6 @@ public class User {
 	@Column(name = "avatar_id", nullable = true)
 	private int avatarId;
 
-	@OneToMany(targetEntity=SmallImage.class, fetch=FetchType.LAZY, mappedBy="user")
-	private Set<SmallImage> smallImages = new HashSet<SmallImage>();
-
 	@OneToMany(targetEntity=Image.class, fetch=FetchType.LAZY, mappedBy="user")
 	private Set<Image> images = new HashSet<Image>();
 	
@@ -101,14 +98,6 @@ public class User {
 
 	public void setAvatarId(int avatarId) {
 		this.avatarId = avatarId;
-	}
-
-	public Set<SmallImage> getSmallImages() {
-		return smallImages;
-	}
-
-	public void setSmallImages(Set<SmallImage> smallImages) {
-		this.smallImages = smallImages;
 	}
 
 	public Set<Image> getImages() {

@@ -10,11 +10,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<artifactId>socialka-core</artifactId>
 
 	<properties>
-		<out.name>${project.artifactId}</out.name>
-		<out.folder>out</out.folder>
-		<source.folder>source</source.folder>
-		<resource.folder>resource</resource.folder>
-		<jetty.version>9.3.0.M1</jetty.version>
+
 	</properties>
 
 	<dependencies>
@@ -108,12 +104,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet-version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
@@ -124,46 +114,24 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>9.1-901-1.jdbc4</version>
         </dependency>
 
-		<!-- Jetty -->
-
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-server</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-webapp</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jsp</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-
     </dependencies>
 
 	<build>
 
-		<finalName>${out.name}</finalName>
-		<directory>${out.folder}</directory>
-		<testOutputDirectory>${out.folder}</testOutputDirectory>
-		<outputDirectory>${out.folder}</outputDirectory>
-		<testSourceDirectory>${source.folder}</testSourceDirectory>
-		<sourceDirectory>${source.folder}</sourceDirectory>
-
-		<resources>
-			<resource>
-				<directory>${resource.folder}</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-
-
 		<plugins>
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -22,7 +22,7 @@ public class Image {
 	@JoinColumn(name="id_user", nullable=false)
 	private User user;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "images", cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "image", cascade = CascadeType.ALL)
 	private SmallImage smallImage;
 
 	public int getIdImage() {
