@@ -20,7 +20,11 @@ import org.springframework.stereotype.Repository;
 public class UserDaoImpl implements UserDao {
 
 	private SessionFactory sessionFactory;
-	
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	public void addUser(User user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodePassword = encoder.encode(user.getPassword());

@@ -28,7 +28,7 @@
        </bean>
        
        <bean id="userDao" class="com.kasyan.Socialka.dao.impl.UserDaoImpl">
-              <meta key="sessionFactory" value="hibernate4AnnotatedSessionFactory"/>
+              <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
        </bean>
 
        <bean id="friendshipDao" class="com.kasyan.Socialka.dao.impl.FriendshipDaoImpl">

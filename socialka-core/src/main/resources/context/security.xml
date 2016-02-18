@@ -13,12 +13,12 @@
               <!-- access denied page -->
               <access-denied-handler error-page="/403" />
               <form-login
-                      login-page="/login"
-                      default-target-url="/my_page"
-                      authentication-failure-url="/login?error"
+                      login-page="/login.html"
+                      default-target-url="/my_page.html"
+                      authentication-failure-url="/login.html?error"
                       username-parameter="email"
                       password-parameter="password" />
-              <logout logout-success-url="/login?logout" />
+              <logout logout-success-url="/login.html?logout" />
               <!-- enable csrf protection -->
               <csrf />
        </http>
@@ -28,5 +28,13 @@
                      <password-encoder hash="bcrypt" />
               </authentication-provider>
        </authentication-manager>
+
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+    <beans:bean id="authProvider"
+                class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <beans:property name="userDetailsService" ref="signInServiceImpl" />
+        <beans:property name="passwordEncoder" ref="encoder"/>
+    </beans:bean>
 
 </beans:beans>
