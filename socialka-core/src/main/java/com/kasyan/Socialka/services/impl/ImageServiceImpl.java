@@ -8,15 +8,11 @@ import com.kasyan.Socialka.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class ImageServiceImpl implements ImageService {
 
-	@Autowired
+	//@Autowired
 	private ImageDao imageDao;
-
-	public void setImageDao(ImageDao imageDao) {
-		this.imageDao = imageDao;
-	}
 
 	public void addImage(Image image, SmallImage smallImage) {
 		imageDao.addImage(image, smallImage);

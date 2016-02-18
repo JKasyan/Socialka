@@ -16,10 +16,10 @@ import com.kasyan.Socialka.services.FriendshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class FriendshipServiceImpl implements FriendshipService {
 
-	@Autowired
+	//@Autowired
 	private FriendshipDao friendshipDao;
 
 	public void addProposalBeFriend(String emailOne, int idTwo) {

@@ -15,15 +15,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  * Created by Victoriya on 17.02.16.
  */
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] SECURED_PAGES =
-            new String[]{"/my_page**", "/my_friends**", "/friend/**", "/groups/**"};
+            new String[]{"/my_page", "/my_friends", "/friend/**", "/groups/**"};
 
-    @Autowired
-    @Qualifier("signInServiceImpl")
+    //@Autowired
+    //@Qualifier("signInServiceImpl")
     private UserDetailsService userDetailsService;
 
     @Override
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
 
-    @Bean
+    //@Bean
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }

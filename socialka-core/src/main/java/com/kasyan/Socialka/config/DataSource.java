@@ -14,7 +14,7 @@ import java.util.Properties;
 /**
  * Created by Victoriya on 17.02.16.
  */
-@Configuration
+//@Configuration
 public class DataSource {
 
     private static final String DB_URL =
@@ -23,7 +23,7 @@ public class DataSource {
             User.class, Friendship.class, Group.class, Image.class, SmallImage.class, UserRole.class
     };
 
-    @Bean
+    //@Bean
     public DriverManagerDataSource driverManagerDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
@@ -33,7 +33,7 @@ public class DataSource {
         return dataSource;
     }
 
-    @Bean
+    //@Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(driverManagerDataSource());
@@ -46,8 +46,8 @@ public class DataSource {
         return factoryBean;
     }
 
-    @Bean
-    @Autowired
+    //@Bean
+    //@Autowired
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory);

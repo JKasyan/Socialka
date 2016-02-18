@@ -20,15 +20,11 @@ import com.kasyan.Socialka.dto.Status;
 import com.kasyan.Socialka.dto.User;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class FriendshipDaoImpl implements FriendshipDao {
 
 	private SessionFactory sessionFactory;
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 
 	public void confirmFriendship(int idOne, int idTwo) {
 		Session session = this.sessionFactory.openSession();

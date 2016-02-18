@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+       <!-- MUST have transaction manager, using aop and aspects -->
+       <bean id="transactionManager"
+             class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+              <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+       </bean>
+
+       <tx:advice id="txAdvice" transaction-manager="transactionManager">
+              <tx:attributes>
+                     <tx:method name="get*" read-only="true" />
+                     <tx:method name="find*" read-only="true" />
+                     <tx:method name="*" />
+              </tx:attributes>
+       </tx:advice>
+
+       <aop:config>
+              <aop:pointcut id="userServicePointCut"
+                            expression="execution(* com.kasyan.Socialka.services.impl.*SignInServiceImpl.*(..))" />
+              <aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" />
+       </aop:config>
+
+       <bean name="userService" class="com.kasyan.Socialka.services.impl.UserServiceImpl">
+              <meta key="userDao" value="userDao"/>
+       </bean>
+
+       <bean name="friendshipService" class="com.kasyan.Socialka.services.impl.FriendshipServiceImpl">
+              <meta key="friendshipDao" value="friendshipDao"/>
+       </bean>
+
+       <bean name="groupService" class="com.kasyan.Socialka.services.impl.GroupServiceImpl">
+              <meta key="groupDao" value="groupDao"/>
+       </bean>
+
+       <bean name="" class="com.kasyan.Socialka.services.impl.ImageServiceImpl">
+              <meta key="imageDao" value="imageDao"/>
+       </bean>
+
+       <bean name="signInServiceImpl" class="com.kasyan.Socialka.services.impl.SignInServiceImpl">
+              <meta key="userDao" value="userDao"/>
+       </bean>
+</beans>

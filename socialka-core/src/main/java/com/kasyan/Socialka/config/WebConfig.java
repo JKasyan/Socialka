@@ -13,10 +13,10 @@ import org.springframework.web.servlet.view.JstlView;
 /**
  * Created by Victoriya on 17.02.16.
  */
-@Configuration
-@EnableWebMvc
-@ComponentScan("com.kasyan.Socialka")
-@ImportResource({"classpath:security.xml"})
+//@Configuration
+//@EnableWebMvc
+//@ComponentScan("com.kasyan.Socialka")
+//@ImportResource({"classpath:security.xml"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -24,7 +24,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
-    @Bean
+    //@Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/jsp/");

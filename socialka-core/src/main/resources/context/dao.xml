@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="hibernate4AnnotatedSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="annotatedClasses">
+                     <list>
+                            <value>com.kasyan.Socialka.dto.Friendship</value>
+                            <value>com.kasyan.Socialka.dto.Group</value>
+                            <value>com.kasyan.Socialka.dto.Image</value>
+                            <value>com.kasyan.Socialka.dto.SmallImage</value>
+                            <value>com.kasyan.Socialka.dto.User</value>
+                            <value>com.kasyan.Socialka.dto.UserRole</value>
+                     </list>
+              </property>
+              <property name="hibernateProperties">
+                     <props>
+                            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                            <prop key="hibernate.current_session_context_class">thread</prop>
+                            <prop key="hibernate.show_sql">false</prop>
+                            <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+                            <prop key="hibernate.search.default.directory_provider">filesystem</prop>
+                            <prop key="hibernate.search.default.indexBase">/var/lucene/indexes</prop>
+                     </props>
+              </property>
+       </bean>
+       
+       <bean id="userDao" class="com.kasyan.Socialka.dao.impl.UserDaoImpl">
+              <meta key="sessionFactory" value="hibernate4AnnotatedSessionFactory"/>
+       </bean>
+
+       <bean id="friendshipDao" class="com.kasyan.Socialka.dao.impl.FriendshipDaoImpl">
+              <meta key="sessionFactory" value="hibernate4AnnotatedSessionFactory"/>
+       </bean>
+
+       <bean id="groupDao" class="com.kasyan.Socialka.dao.impl.GroupDaoImpl">
+              <meta key="sessionFactory" value="hibernate4AnnotatedSessionFactory"/>
+       </bean>
+
+       <bean id="imageDao" class="com.kasyan.Socialka.dao.impl.ImageDaoImpl">
+              <meta key="sessionFactory" value="hibernate4AnnotatedSessionFactory"/>
+       </bean>
+</beans>

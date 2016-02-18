@@ -14,14 +14,10 @@ import com.kasyan.Socialka.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class GroupDaoImpl implements GroupDao {
 
 	private SessionFactory sessionFactory;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 
 	public void joinGroup(User user) {
 	}

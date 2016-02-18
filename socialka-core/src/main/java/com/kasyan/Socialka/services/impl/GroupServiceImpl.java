@@ -15,9 +15,6 @@ public class GroupServiceImpl implements GroupService {
 	@Autowired
 	private GroupDao groupDao;
 
-	public void setGroupDao(GroupDao groupDao) {
-		this.groupDao = groupDao;
-	}
 
 	public void joinGroup(User user) {
 		groupDao.joinGroup(user);

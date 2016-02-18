@@ -16,14 +16,10 @@ import com.kasyan.Socialka.dto.UserRole;
 import com.kasyan.Socialka.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class UserDaoImpl implements UserDao {
 
 	private SessionFactory sessionFactory;
-	
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 	
 	public void addUser(User user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
