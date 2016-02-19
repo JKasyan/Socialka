@@ -24,12 +24,12 @@
 
        <aop:config>
               <aop:pointcut id="userServicePointCut"
-                            expression="execution(* com.kasyan.Socialka.services.impl.*SignInServiceImpl.*(..))" />
+                            expression="execution(* com.kasyan.Socialka.services.impl.*ServiceImpl.*(..))" />
               <aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" />
        </aop:config>
 
        <bean name="userService" class="com.kasyan.Socialka.services.impl.UserServiceImpl">
-              <meta key="userDao" value="userDao"/>
+           <property name="userDao" ref="userDao"/>
        </bean>
 
        <bean name="friendshipService" class="com.kasyan.Socialka.services.impl.FriendshipServiceImpl">

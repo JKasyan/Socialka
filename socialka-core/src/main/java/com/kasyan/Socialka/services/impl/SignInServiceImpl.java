@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,6 +23,7 @@ public class SignInServiceImpl implements UserDetailsService{
 
     @Autowired
 	private UserDao userDao;
+	private static final Logger logger = Logger.getLogger(SignInServiceImpl.class);
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -31,7 +33,8 @@ public class SignInServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(final String email)
 			throws UsernameNotFoundException {
 		com.kasyan.Socialka.dto.User user = userDao.getByEmail(email);
-		
+		logger.debug("User: " + user);
+		if (user == null) throw new UsernameNotFoundException("User with email: " + email + " not exists");
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 		return buildUserForAuthentication(user, authorities);
 	}

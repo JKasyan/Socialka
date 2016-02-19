@@ -1,7 +1,5 @@
 package com.kasyan.Socialka.dto;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,23 +30,23 @@ public class User {
 	private String lastName;
 
 	@Column(name = "avatar_id", nullable = true)
-	private int avatarId;
+	private Integer avatarId;
 
 	@OneToMany(targetEntity=Image.class, fetch=FetchType.LAZY, mappedBy="user")
-	private Set<Image> images = new HashSet<Image>();
+	private Set<Image> images = new HashSet<>();
 	
 	@OneToMany(targetEntity=UserRole.class, fetch=FetchType.LAZY, mappedBy="user")
-	private Set<UserRole> userRole;
+	private Set<UserRole> userRole = new HashSet<>();
 	
-	@Column(name="enabled", nullable=false, columnDefinition="TINYINT(1)")
-	@Type(type="org.hibernate.type.NumericBooleanType")
+	@Column(name="enabled")
+	//@Type(type="org.hibernate.type.NumericBooleanType")
 	private boolean enabled;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -122,5 +120,19 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", email='" + email + '\'' +
+				", name='" + name + '\'' +
+				", gender='" + gender + '\'' +
+				", lastName='" + lastName + '\'' +
+				", avatarId=" + avatarId +
+				", enabled=" + enabled +
+				", userRole=" + userRole +
+				'}';
 	}
 }

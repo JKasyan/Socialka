@@ -25,4 +25,10 @@ public class UserDaoTest {
         List<User> allUsers = userDao.getAllUsers();
         System.out.println(allUsers);
     }
+
+    @Test
+    public void getByEmailTest() {
+        User email = userDao.getByEmail("user@gmail.com");
+        System.out.println(email);
+    }
 }

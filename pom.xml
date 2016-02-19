@@ -10,7 +10,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <properties>
         <servlet-version>2.3</servlet-version>
   		<socialka-core.version>0.0.1-SNAPSHOT</socialka-core.version>
-		<spring-version>4.2.4.RELEASE</spring-version>
+		<spring-version>4.1.3.RELEASE</spring-version>
 		<spring-security-version>3.2.3.RELEASE</spring-security-version>
 		<mysql-connector>5.1.34</mysql-connector>
 		<hibernate.version>4.2.11.Final</hibernate.version>
